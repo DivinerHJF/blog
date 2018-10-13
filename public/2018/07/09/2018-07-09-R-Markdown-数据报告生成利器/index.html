@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/bird.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bird.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bird.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/bird.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="R Markdown,数据报告,可重复性,可视化," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Diviner's BLOG" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="R Markdown 站在 knitr 和 Pandoc 的肩膀上，前者执行嵌入于文档中的计算机代码，并将 R Markdown 转换为 Markdown；后者将 Markdown 呈现出您想要的输出格式（如 PDF、HTML、Word 等）">
+<meta name="keywords" content="R Markdown,数据报告,可重复性,可视化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R Markdown: 数据报告生成利器">
+<meta property="og:url" content="https://divinerhjf.github.io/2018/07/09/2018-07-09-R-Markdown-数据报告生成利器/index.html">
+<meta property="og:site_name" content="Diviner&#39;s BLOG">
+<meta property="og:description" content="R Markdown 站在 knitr 和 Pandoc 的肩膀上，前者执行嵌入于文档中的计算机代码，并将 R Markdown 转换为 Markdown；后者将 Markdown 呈现出您想要的输出格式（如 PDF、HTML、Word 等）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pblv0vj27.bkt.clouddn.com/hex-rmarkdown.png">
+<meta property="og:image" content="https://bookdown.org/yihui/rmarkdown/images/tabset.png">
+<meta property="og:image" content="https://bookdown.org/yihui/rmarkdown/images/paged.png">
+<meta property="og:updated_time" content="2018-07-09T15:34:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R Markdown: 数据报告生成利器">
+<meta name="twitter:description" content="R Markdown 站在 knitr 和 Pandoc 的肩膀上，前者执行嵌入于文档中的计算机代码，并将 R Markdown 转换为 Markdown；后者将 Markdown 呈现出您想要的输出格式（如 PDF、HTML、Word 等）">
+<meta name="twitter:image" content="http://pblv0vj27.bkt.clouddn.com/hex-rmarkdown.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"perspectiveLeftIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"perspectiveLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索……","hits_empty":"我们没有找到: ${query}","hits_stats":"${hits} 找到结果共花费 ${time} 毫秒"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://divinerhjf.github.io/2018/07/09/2018-07-09-R-Markdown-数据报告生成利器/"/>
+
+
+
+
+
+  <title>R Markdown: 数据报告生成利器 | Diviner's BLOG</title>
+  
+
+
+
+
+
+
+
+
+
+
+  <!-- DaoVoice留言板 -->
+  <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/07960529.js","daovoice")</script>
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+  <a href="https://github.com/DivinerHJF" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Diviner's BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Live well, love lots, and laugh often.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/categories/碎碎念" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br />
+            
+            碎碎念
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://divinerhjf.github.io/2018/07/09/2018-07-09-R-Markdown-数据报告生成利器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郝建锋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Diviner's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">R Markdown: 数据报告生成利器</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-09T22:44:09+08:00">
+                2018-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/R/" itemprop="url" rel="index">
+                    <span itemprop="name">R</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/09/2018-07-09-R-Markdown-数据报告生成利器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/07/09/2018-07-09-R-Markdown-数据报告生成利器/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/07/09/2018-07-09-R-Markdown-数据报告生成利器/" class="leancloud_visitors" data-flag-title="R Markdown: 数据报告生成利器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.9k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>
+    <i>   
+        R Markdown 站在 knitr 和 Pandoc 的肩膀上，前者执行嵌入于文档中的计算机代码，并将 R Markdown 转换为 Markdown；后者将 Markdown 呈现出您想要的输出格式（如 PDF、HTML、Word 等）
+    </i>
+</center>
+
+<p><br><img src="http://pblv0vj27.bkt.clouddn.com/hex-rmarkdown.png" alt="R Markdown"><br><a id="more"></a></p>
+<p>此篇文章翻译自谢益辉新书 <a href="https://bookdown.org/yihui/rmarkdown/" target="_blank" rel="noopener">《R Markdown: The Definitive Guide》</a> 的前三章节，内容有所删减，主要介绍了 R Markdown 的相关结构及语法规则，如果想了解更多更详细的内容推荐您阅读原书。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>这里假设您已经安装了 R (<a href="https://www.r-project.org/" target="_blank" rel="noopener">https://www.r-project.org</a>)  和 RStudio IDE (<a href="https://www.rstudio.com/" target="_blank" rel="noopener">https://www.rstudio.com</a>) 。Rstudio 并不是必须的，但安装它会使您更加容易地使用 R Markdown。如果您没有安装 RStudio IDE，您将不得不安装 Pandoc（ <a href="http://pandoc.org" target="_blank" rel="noopener">http://pandoc.org</a> ），否则就不需要单独安装 Pandoc，因为在安装 RStudio 时已经将它捆绑安装了。接下来，您可以在 R 中安装 <code>rmarkdown</code> 包： </p>
+<figure class="highlight r"><figcaption><span>安装 rmarkdown 包的两种方式</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Install from CRAN</span></span><br><span class="line">install.packages(<span class="string">'rmarkdown'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Or if you want to test the development version,</span></span><br><span class="line"><span class="comment"># install from GitHub</span></span><br><span class="line"><span class="keyword">if</span> (!requireNamespace(<span class="string">"devtools"</span>))</span><br><span class="line">  install.packages(<span class="string">'devtools'</span>)</span><br><span class="line">devtools::install_github(<span class="string">'rstudio/rmarkdown'</span>)</span><br></pre></td></tr></table></figure>
+<p>如果您想要生成 PDF 类型文档输出，您将需要安装 LaTeX 。对于那些以前没有安装过 LaTeX 的 R Markdown 用户，我们建议您安装 TinyTeX（<a href="https://yihui./tinytex/）：" target="_blank" rel="noopener">https://yihui./tinytex/）：</a> </p>
+<figure class="highlight r"><figcaption><span>安装 tinytex 包</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages(<span class="string">"tinytex"</span>)</span><br><span class="line">tinytex::install_tinytex()  <span class="comment"># install TinyTeX</span></span><br></pre></td></tr></table></figure>
+<p>TinyTeX 相当于一款轻量级、跨平台、易于维护的 LaTeX 。在将 LaTeX  或 R Markdown 文档编译成 PDF 时，<code>tinytex</code> 可以帮助您自动安装所需的相关 R 包，同时还能确保一个 LaTeX  文档被编译成正确的次数，以解决所有的交叉引用问题。如果您不明白这两件事是什么意思，应该按照我们的建议来安装 TinyTeX，因为这些细节往往并不值得您花费时间和精力去关心。 </p>
+<p>使用 <code>rmarkdown</code> 包、RStudio/Pandoc 和 LaTeX，您应该能够编译大多数R Markdown 文档。在某些情况下，您可能需要其他软件包，我们将在必要时提到它们。 </p>
+<blockquote>
+<p><strong>参考文献</strong></p>
+<ul>
+<li>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.r-project.org/" target="_blank" rel="noopener">https://www.R-project.org/</a>.</li>
+<li>Xie, Yihui. 2018f. <em>Tinytex: Helper Functions to Install and Maintain Tex Live, and Compile Latex Documents</em>. <a href="https://github.com/yihui/tinytex" target="_blank" rel="noopener">https://github.com/yihui/tinytex</a>.</li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><p>R Markdown 为数据科学提供了一个创作框架。R Markdown 能胜任以下两个任务：</p>
+<ul>
+<li>保存并执行代码；</li>
+<li>生成可共享的高质量报告。</li>
+</ul>
+<p>R Markdown 的设计初衷是为了更容易地实现报告内容的可重复性，这是因为计算代码和叙述都在同一个文档中，结果是由源代码自动生成的。并且 R Markdown 支持数十种静态和动态/交互式输出格式。 </p>
+<p>如果您更喜欢观看视频进行学习，我们建议您查看网站 <a href="https://rmarkdown.rstudio.com" target="_blank" rel="noopener">https://rmarkdown.rstudio.com</a>，并在 “Get Started ” 中观看视频，其中包括了 R Markdown 的基础知识。 </p>
+<h2 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h2><p>下面是一份非常简易的 R Markdown 文档，是一个带有 <code>.Rmd</code> 拓展名的纯文本文档。</p>
+<figure class="highlight yaml"><figcaption><span>YAML 元数据</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">"Hello R Markdown"</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">"Awesome Me"</span></span><br><span class="line"><span class="attr">date:</span> <span class="string">"2018-02-14"</span></span><br><span class="line"><span class="attr">output:</span> <span class="string">html_document</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><figcaption><span>主体内容</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">This is a paragraph in an R Markdown document.</span><br><span class="line"></span><br><span class="line">Below is a code chunk:</span><br><span class="line"></span><br><span class="line"><span class="code">```&#123;r&#125;</span></span><br><span class="line"><span class="code">fit = lm(dist ~ speed, data = cars)</span></span><br><span class="line"><span class="code">b   = coef(fit)</span></span><br><span class="line"><span class="code">plot(cars)</span></span><br><span class="line"><span class="code">abline(fit)</span></span><br><span class="line"><span class="code">```</span></span><br><span class="line"></span><br><span class="line">The slope of the regression is <span class="code">`r b[1]`</span>.</span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
+<p>您可以使用任何文本编辑器（包括但不限于 RStudio）来创建这样的文本文档。如果使用 RStudio，您可以从 <code>File -&gt; New File -&gt; R Markdown</code> 中创建一个新的 Rmd 文档。 </p>
+<p>一份 R Markdown 文档有三个基础组成部分：元数据，文本和代码。元数据是在三个连接符 <code>---</code> 之间的内容。元数据的语法是 YAML（ <a href="https://en.wikipedia.org/wiki/YAML" target="_blank" rel="noopener">YAML 不是标记语言</a> ），所以有时它也被称为 YAML metadata 或 YAML frontmatter。 需要注意的是，缩进在 YAML 中十分重要，忽视它会让你付出惨重代价。请参阅谢益辉所写的 《bookdown》（2016）一书中的 <a href="https://bookdown.org/yihui/bookdown/r-markdown.html" target="_blank" rel="noopener">附录b.2</a> 来了解一些简单的例子，这些示例展示了 YAML 语法。</p>
+<p>文档的主体遵循元数据书写的规则。文本的语法是 Markdown，将在第 2.5 节中进行介绍。有两种类型的计算机代码，在第 2.6 节中进行了详细解释： </p>
+<ul>
+<li><strong>代码块</strong>：以三个重音符及所使用语言开始，其中 <code>r</code> 代表所使用的程序语言，并以三个重音符结束。 可以在花括号中填写块选项（如：将图形高度设置为5英寸：<code>{r, fig.height=5}</code>）。</li>
+<li><strong>内联代码</strong>：以 <code>`r</code> 开始，并以单个重音符结束。</li>
+</ul>
+<h2 id="文档编译"><a href="#文档编译" class="headerlink" title="文档编译"></a>文档编译</h2><p>最简单的方式莫过于在 RStudio 中单击 <code>Knit</code> 按钮，对应的快捷键为 <code>Ctrl + Shift + K</code> （在 macOS 中为 <code>Cmd + Shift + K</code>）。当然也可以直接运行代码 <code>rmarkdown::render</code> 来进行渲染编译，如：</p>
+<figure class="highlight r"><figcaption><span>文档渲染编译</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmarkdown::render(<span class="string">'foo.Rmd'</span>, <span class="string">'pdf_document'</span>)</span><br></pre></td></tr></table></figure>
+<p>当编译多个文档时，使用函数更加方便，因为可以直接使用循环来进行渲染编译。</p>
+<h2 id="参考卡片"><a href="#参考卡片" class="headerlink" title="参考卡片"></a>参考卡片</h2><p>RStudio 已经创建了大量的参考卡片，它们可以在 <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank" rel="noopener">https://www.rstudio.com/resources/cheatsheets/</a> 上免费获得。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>有两种输出格式：documents 和 presentations 。所有可用的格式如下所示 ：</p>
+<ul>
+<li><code>beamer_presentation</code></li>
+<li><code>github_document</code></li>
+<li><code>html_document</code></li>
+<li><code>ioslides_presentation</code></li>
+<li><code>latex_document</code></li>
+<li><code>md_document</code></li>
+<li><code>odt_document</code></li>
+<li><code>pdf_document</code></li>
+<li><code>powerpoint_presentation</code></li>
+<li><code>rtf_document</code></li>
+<li><code>slidy_presentation</code></li>
+<li><code>word_document</code></li>
+</ul>
+<p>我们将在第 3 章和第 4 章详细地记录这些输出格式。在其他扩展包中提供了更多的输出格式（从第 5 章开始）。对于 Rmd 文件的 YAML 元数据中的输出格式名称，如果格式来自扩展包，您需要包含包名（若格式来自于 <code>rmarkdown</code> 包，则不需要 <code>rmarkdown::</code>前缀 ），例如：</p>
+<figure class="highlight yaml"><figcaption><span>输出格式设置</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">output:</span> <span class="attr">tufte::tufte_html</span></span><br></pre></td></tr></table></figure>
+<p>每种输出格式通常都有多种格式选项。所有这些选项都记录在 R 包 help 页面上。例如，您可以在 R 中键入 <code>?rmarkdown::</code> 打开关于 <code>html_document</code> 格式的 help 页面。当您想要使用某些选项时，必须将这些值从 R 转换成 YAML，例如：</p>
+<figure class="highlight r"><figcaption><span>?rmarkdown::</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">html_document(toc = <span class="literal">TRUE</span>, toc_depth = <span class="number">2</span>, dev = <span class="string">'svg'</span>)</span><br></pre></td></tr></table></figure>
+<p>可以用 YAML 写为： </p>
+<figure class="highlight yaml"><figcaption><span>输出格式参数设置</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">output:</span></span><br><span class="line"><span class="attr">  html_document:</span></span><br><span class="line"><span class="attr">    toc:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    toc_depth:</span> <span class="number">2</span></span><br><span class="line"><span class="attr">    dev:</span> <span class="string">'svg'</span></span><br></pre></td></tr></table></figure>
+<p>YAML 中的字符串通常不需要引号（<code>`dev：“svg”</code> 和 <code>dev:svg</code> 是相同的），除非它们包含特殊字符，比如冒号 <code>：</code>。如果您不确定是否应该引用字符串，那么用 <code>yaml</code> 包来测试它，例如：</p>
+<figure class="highlight r"><figcaption><span>YAML 语法</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cat(yaml::as.yaml(list(</span><br><span class="line">  title = <span class="string">'A Wonderful Day'</span>,</span><br><span class="line">  subtitle = <span class="string">'hygge: a quality of coziness'</span></span><br><span class="line">)))</span><br><span class="line"></span><br><span class="line"><span class="comment">## title: A Wonderful Day</span></span><br><span class="line"><span class="comment">## subtitle: 'hygge: a quality of coziness'</span></span><br></pre></td></tr></table></figure>
+<p>注意，上面例子中的副标题是由于冒号而引用单引号的。</p>
+<p>如果某一选项有子选项（这意味着该选项的值是 R 中的列表），则子选项需要进一步缩进，例如：</p>
+<figure class="highlight yaml"><figcaption><span>子选项-缩进</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">output:</span></span><br><span class="line"><span class="attr">  html_document:</span></span><br><span class="line"><span class="attr">    toc:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    includes:</span></span><br><span class="line"><span class="attr">      in_header:</span> <span class="string">header.html</span></span><br><span class="line"><span class="attr">      before_body:</span> <span class="string">before.html</span></span><br></pre></td></tr></table></figure>
+<p>一些选项将被传递给 <strong>knitr</strong> ，比如 <code>dev</code>、<code>fig_width</code> 和 <code>fig_height</code>。这些选项的详细文档可以在 <a href="https://yihui.name/knitr/options/" target="_blank" rel="noopener">knitr 文档页面</a> 上找到。请注意，实际的 knitr 选项名称可能有所不同。特别是，knitr 在名称中使用 <code>.</code>，但 rmarkdown 使用 <code>_</code>，例如，在 rmarkdown 中，<code>fig_width</code>  对应于knitr 中的 <code>fig.width</code> 。</p>
+<p>一些选项将被传递给 <strong>Pandoc</strong>，比如 <code>toc</code>、<code>toc_depth</code> 和 <code>number_sections</code> 。当有疑问时，您应该参考 Pandoc 文档。R Markdown 输出格式函数通常有一个<code>pandoc_args</code>  参数，它应该是传递给 Pandoc 的参数的字符向量。如果您发现任何没有由输出格式参数表示的 Pandoc 特性，您可以使用这个终极论证，例如：</p>
+<figure class="highlight yaml"><figcaption><span>pandoc_args 参数</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">output:</span></span><br><span class="line"><span class="attr">  pdf_document:</span></span><br><span class="line"><span class="attr">    toc:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    pandoc_args:</span> <span class="string">["--wrap=none",</span> <span class="string">"--top-level-division=chapter"</span><span class="string">]</span></span><br></pre></td></tr></table></figure>
+<h2 id="Markdown-语法"><a href="#Markdown-语法" class="headerlink" title="Markdown 语法"></a>Markdown 语法</h2><h3 id="内联格式"><a href="#内联格式" class="headerlink" title="内联格式"></a>内联格式</h3><ul>
+<li><p><em>斜体</em> ：<code>_text_</code> 或 <code>*text*</code> </p>
+</li>
+<li><p><strong>粗体</strong> ：<code>**text**</code></p>
+</li>
+<li><p>下标 ：<code>H~3~PO~4~</code>  渲染为 $H_3PO_4$ </p>
+</li>
+<li><p>上标 ：<code>Cu^2+^</code>  渲染为 $Cu^{2+}$ </p>
+</li>
+<li><p>脚注 ： <code>^[This is a footnote.]</code> </p>
+</li>
+<li><p>内联代码 ：<code>`code` </code> , 可以使用 n+1 个重音符输出包含 n 个重音符的代码块。</p>
+</li>
+<li><p>超链接 ：<code>[text](link)</code> </p>
+</li>
+<li><p>图片链接 ： <code>![alt text or image title](path/to/image)</code></p>
+</li>
+<li><p>引用 ： </p>
+<figure class="highlight ruby"><figcaption><span>书籍引用</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Manual&#123;R-base,</span><br><span class="line">  title = &#123;<span class="symbol">R:</span> A Language <span class="keyword">and</span> Environment <span class="keyword">for</span> Statistical</span><br><span class="line">    Computing&#125;,</span><br><span class="line">  author = &#123;&#123;R Core Team&#125;&#125;,</span><br><span class="line">  organization = &#123;R Foundation <span class="keyword">for</span> Statistical Computing&#125;,</span><br><span class="line">  address = &#123;Vienna, Austria&#125;,</span><br><span class="line">  year = &#123;<span class="number">2017</span>&#125;,</span><br><span class="line">  url = &#123;<span class="symbol">https:</span>/<span class="regexp">/www.R-project.org/</span>&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h3><ul>
+<li><p><strong>标题</strong></p>
+<figure class="highlight markdown"><figcaption><span>三级标题的书写</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># First-level header</span></span><br><span class="line"></span><br><span class="line"><span class="section">## Second-level header</span></span><br><span class="line"></span><br><span class="line"><span class="section">### Third-level header</span></span><br></pre></td></tr></table></figure>
+<p>如果不想让某个标题被编号，可以在标题后面添加 <code>{-}</code> 或者 <code>{.unnumbered}</code>，如：</p>
+<figure class="highlight markdown"><figcaption><span>标题不编号</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># Preface &#123;-&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>无序列表</strong></p>
+<figure class="highlight markdown"><figcaption><span>无序列表</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>one item</span><br><span class="line"><span class="bullet">- </span>one item</span><br><span class="line"><span class="bullet">- </span>one item</span><br><span class="line">  - one more item</span><br><span class="line">  - one more item</span><br><span class="line">  - one more item</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>有序列表</strong></p>
+<figure class="highlight markdown"><figcaption><span>有序列表</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1. </span>the first item</span><br><span class="line"><span class="bullet">2. </span>the second item</span><br><span class="line"><span class="bullet">3. </span>the third item</span><br><span class="line">  - one unordered item</span><br><span class="line">  - one unordered item</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>引用</strong></p>
+<figure class="highlight markdown"><figcaption><span>名言引用</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; "I thoroughly disapprove of duels. If a man should challenge me,</span></span><br><span class="line">  I would take him kindly and forgivingly by the hand and lead him</span><br><span class="line">  to a quiet place and kill him."</span><br><span class="line">&gt;</span><br><span class="line"><span class="quote">&gt;                                                 --- Mark Twain</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>“I thoroughly disapprove of duels. If a man should challenge me,<br>I would take him kindly and forgivingly by the hand and lead him<br>to a quiet place and kill him.”</p>
+<p>​                                               —- Mark Twain</p>
+</blockquote>
+</li>
+<li><p><strong>代码块</strong></p>
+<figure class="highlight markdown"><figcaption><span>代码块</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```</span></span><br><span class="line"><span class="code">This text is displayed verbatim / preformatted</span></span><br><span class="line"><span class="code">```</span></span><br><span class="line"></span><br><span class="line">Or indent by four spaces:</span><br><span class="line"></span><br><span class="line"><span class="code">    This text is displayed verbatim / preformatted</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="数学表达式"><a href="#数学表达式" class="headerlink" title="数学表达式"></a>数学表达式</h3><p><code>$f(k) = {n \choose k} p^{k} (1-p)^{n-k}$</code> :  $f(k) = {n \choose k} p^{k} (1-p)^{n-k}$ </p>
+<p><code>$$f(k) = {n \choose k} p^{k} (1-p)^{n-k}$$</code> : </p>
+<script type="math/tex; mode=display">
+f(k) = {n \choose k} p^{k} (1-p)^{n-k}</script><hr>
+<h2 id="代码块选项"><a href="#代码块选项" class="headerlink" title="代码块选项"></a>代码块选项</h2><p>单击 <code>Insert</code> 按钮，对应快捷键为 <code>Ctrl + Alt + I</code> （macOS：<code>Cmd + Option + I</code> ）。</p>
+<p>在 <a href="https://yihui.name/knitr/options" target="_blank" rel="noopener">https://yihui.name/knitr/options</a> 中有大量的代码块可选项，在此我们列出常用的一部分：</p>
+<ul>
+<li><p><code>eval=TRUE</code> ：执行当前代码块；</p>
+<figure class="highlight r"><figcaption><span>eval 巧用</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">```&#123;r&#125;</span><br><span class="line"># execute code if the date is later than a specified day</span><br><span class="line">do_it = Sys.Date() &gt; '2018-02-14'</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">```&#123;r, eval=do_it&#125;</span><br><span class="line">x = rnorm(100)</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>echo=TRUE</code> ：输出源代码；</p>
+</li>
+<li><p><code>result</code> ：当设置为 <code>&#39;hide&#39;</code> ，文本输出将被隐藏；当设置为 <code>&#39;asis&#39;</code> ，文本输出将被 “原样” 书写。</p>
+</li>
+<li><p><code>collapse=TRUE</code> ：将文本输出和源代码合并为单个代码块输出，更加紧凑；</p>
+</li>
+<li><p><code>warning</code>, <code>message</code>,  <code>error</code> ：是否在输出文档中显示警告、消息和错误；</p>
+</li>
+<li><p><code>include=FALSE</code> ：运行当前代码并且不显示任何源代码与输出结果；</p>
+</li>
+<li><p><code>cache</code> ：是否启用高速缓存。如果启用了缓存，则在下一次编译文档时不会对相同的代码块进行评估（如果代码块没有被修改），这将节省您的时间；</p>
+</li>
+<li><p><code>fig.width</code>，<code>fig.height</code> ：（图形设备）块的大小（英寸）。注意：<code>fig.dim = c(6, 4)</code> 意味着 <code>fig.width = 6</code> 并且 <code>fig.height = 4</code>；</p>
+</li>
+<li><p><code>out.width</code>， <code>out.height</code> ：输出文档中 R 图片的输出大小。可以使用百分比，例如 <code>out.width = &#39;80%&#39;</code> 表示页面宽度的 80%； </p>
+</li>
+<li><p><code>fig.align</code> ：图片的对齐方式；</p>
+</li>
+<li><p><code>dev</code> ：图形设备保存 R 图片的格式。如 <code>&#39;pdf&#39;</code>, <code>&#39;png&#39;</code>, <code>&#39;svg&#39;</code>, <code>&#39;jpeg&#39;</code>；</p>
+</li>
+<li><p><code>fig.cap</code> ：图片标题；</p>
+</li>
+<li><p><code>child</code> ：您可以在主文档中包含子文档。这个选项选择一条通向外部文件的路径。 </p>
+</li>
+</ul>
+<p>如果某个选项需要经常被设置为多个代码块中的值，您可以考虑在文档的第一个代码块中全局设置它：</p>
+<figure class="highlight r"><figcaption><span>全局设置</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">```&#123;r, setup, include=FALSE&#125;</span><br><span class="line">knitr::opts_chunk$set(fig.width = 8, collapse = TRUE)</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>本地图片亦可以使用代码块选项进行调节，例如：</p>
+<figure class="highlight r"><figcaption><span>本地图片选项</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">```&#123;r, out.width='25%', fig.align='center', fig.cap='...'&#125;</span><br><span class="line">knitr::include_graphics('images/hex-rmarkdown.png')</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+<p>如果您想要淡入一个不是由 R 代码生成的图形，您可以使用 <code>knitr::include_graphics()</code>  函数，它使您能够更好地控制图像的属性，而不是像 <code>![alt text or image title](path/to/image)</code> 这样的 Markdown 语法难以调解图片属性。 </p>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>使用 <code>knitr::kable()</code>  函数可以简易的创建表格，表格标题可以通过 <code>caption</code>  来设置，例如：</p>
+<figure class="highlight r"><figcaption><span>表格选项</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">```&#123;r tables-mtcars&#125;</span><br><span class="line">knitr::kable(iris[1:5, ], caption = 'A caption')</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+<p>如果您正在寻找更高级的表格样式控制，建议您使用 <a href="https://cran.r-project.org/package=kableExtra" target="_blank" rel="noopener">kableExtra</a> 包，它提供了定制 PDF 和 HTML 表格外观的功能。在第 12.3 节中解释了 <code>bookdown</code> 包如何扩展 rmarkdown 的功能，以允许在文本中轻松地交叉引用数字和表格。 </p>
+<blockquote>
+<p><strong>参考文献</strong></p>
+<ul>
+<li>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://yihui.name/knitr/" target="_blank" rel="noopener">https://yihui.name/knitr/</a>. </li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="输出文档"><a href="#输出文档" class="headerlink" title="输出文档"></a>输出文档</h1><h2 id="HTML-文档"><a href="#HTML-文档" class="headerlink" title="HTML 文档"></a>HTML 文档</h2><p>为了输出 HTML 文档，首先要在 YAML 元数据中写入 <code>output: html_document</code> ：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Habits</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">John</span> <span class="string">Doe</span></span><br><span class="line"><span class="attr">date:</span> <span class="string">March</span> <span class="number">22</span><span class="string">,</span> <span class="number">2005</span></span><br><span class="line"><span class="attr">output:</span> <span class="string">html_document</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<h3 id="目录（Table-of-contents）"><a href="#目录（Table-of-contents）" class="headerlink" title="目录（Table of contents）"></a>目录（Table of contents）</h3><figure class="highlight yaml"><figcaption><span>目录可选项</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">"Habits"</span></span><br><span class="line"><span class="attr">output:</span></span><br><span class="line"><span class="attr">  html_document:</span></span><br><span class="line"><span class="attr">    toc:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    toc_depth:</span> <span class="number">2</span></span><br><span class="line"><span class="attr">    toc_float:</span></span><br><span class="line"><span class="attr">        collapsed:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">        smooth_scroll:</span> <span class="literal">false</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>toc: true</code> ：输出目录；</li>
+<li><code>toc_depth</code> ：所输出标题的最小级别；</li>
+<li><code>toc_float: true</code> ：目录悬停于内容左侧，并一直可见；</li>
+<li><code>collapsed</code> (默认为 <code>TRUE</code>)  ：初始只显示顶级标题，随内容滚动目录逐级展开；</li>
+<li><code>smooth_scroll</code> (默认为 <code>TRUE</code>) ：点击目录标题是否导航到指定内容。</li>
+</ul>
+<h3 id="目录编号-Section-numbering"><a href="#目录编号-Section-numbering" class="headerlink" title="目录编号 (Section numbering)"></a>目录编号 (Section numbering)</h3><figure class="highlight yaml"><figcaption><span>目录编号</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">"Habits"</span></span><br><span class="line"><span class="attr">output:</span></span><br><span class="line"><span class="attr">  html_document:</span></span><br><span class="line"><span class="attr">    toc:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    number_sections:</span> <span class="literal">true</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<p>注意，如果文档中没有一级标题，那么二级标题将被命名为 <code>0.1</code>, <code>0.2</code> ……</p>
+<h3 id="选项卡-Tabbed-sections"><a href="#选项卡-Tabbed-sections" class="headerlink" title="选项卡 (Tabbed sections)"></a>选项卡 (Tabbed sections)</h3><figure class="highlight markdown"><figcaption><span>选项卡</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## Quarterly Results &#123;.tabset .tabset-fade .tabset-pills&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="section">### By Product</span></span><br><span class="line"></span><br><span class="line">(tab content)</span><br><span class="line"></span><br><span class="line"><span class="section">### By Region</span></span><br><span class="line"></span><br><span class="line">(tab content)</span><br></pre></td></tr></table></figure>
+<p><img src="https://bookdown.org/yihui/rmarkdown/images/tabset.png" alt="Tabbed sections"></p>
+<ul>
+<li><code>.tabset</code>  ：使主标题的所有子标题与 .tabset 属性一起出现在选项卡中，而不是作为独立的部分；</li>
+<li><code>.tabset-fade</code>  ：选项卡切换时淡入淡出；</li>
+<li><code>.tabset-pills</code>  ：改变选项卡外观，使其类似 “药丸”。</li>
+</ul>
+<h3 id="外观与风格"><a href="#外观与风格" class="headerlink" title="外观与风格"></a>外观与风格</h3><figure class="highlight yaml"><figcaption><span>主题与高亮</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">"Habits"</span></span><br><span class="line"><span class="attr">output:</span></span><br><span class="line"><span class="attr">  html_document:</span></span><br><span class="line"><span class="attr">    theme:</span> <span class="string">united</span></span><br><span class="line"><span class="attr">    highlight:</span> <span class="string">tango</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>theme</code>  ：主题是从 <a href="https://bootswatch.com/3/" target="_blank" rel="noopener">Bootswatch</a> 主题库中提取的，适用的主题包括：<code>default</code>, <code>cerulean</code>, <code>journal</code>, <code>flatly</code>, <code>readable</code>, <code>spacelab</code>, <code>united</code>, <code>cosmo</code>, <code>lumen</code>, <code>paper</code>, <code>sandstone</code>, <code>simplex</code>, 和 <code>yeti</code>. </li>
+<li><code>highlight</code> ：代码高亮模式。支持的风格包括： <code>default</code>,  <code>tango</code>,  <code>pygments</code>,  <code>kate</code>,  <code>monochrome</code>,  <code>espresso</code>,  <code>zenburn</code>,  <code>haddock</code> 和 <code>textmate</code>.  </li>
+</ul>
+<h3 id="图片选项"><a href="#图片选项" class="headerlink" title="图片选项"></a>图片选项</h3><figure class="highlight yaml"><figcaption><span>图片选项</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">"Habits"</span></span><br><span class="line"><span class="attr">output:</span></span><br><span class="line"><span class="attr">  html_document:</span></span><br><span class="line"><span class="attr">    fig_width:</span> <span class="number">7</span></span><br><span class="line"><span class="attr">    fig_height:</span> <span class="number">6</span></span><br><span class="line"><span class="attr">    fig_caption:</span> <span class="literal">true</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>fig_width</code> 和 <code>fig_height</code>  ：图片宽度和高度；</li>
+<li><code>fig_caption</code>  ：控制图片是否包括标题；</li>
+<li><code>dev</code>  ：图片渲染格式，默认为 <code>png</code>。</li>
+</ul>
+<h3 id="表格打印"><a href="#表格打印" class="headerlink" title="表格打印"></a>表格打印</h3><p> 默认表格输出格式为：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Option</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">default</td>
+<td style="text-align:left">Call the <code>print.data.frame</code> generic method</td>
+</tr>
+<tr>
+<td style="text-align:center">kable</td>
+<td style="text-align:left">Use the <code>knitr::kable</code> function</td>
+</tr>
+<tr>
+<td style="text-align:center">tibble</td>
+<td style="text-align:left">Use the <code>tibble::print.tbl_df</code> function</td>
+</tr>
+<tr>
+<td style="text-align:center">paged</td>
+<td style="text-align:left">Use <code>rmarkdown::print.paged_df</code> to create a pageable table</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>设定为 paged 格式后输出形式为：</p>
+<figure class="highlight yaml"><figcaption><span>表格设置</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">"Motor Trend Car Road Tests"</span></span><br><span class="line"><span class="attr">output:</span></span><br><span class="line"><span class="attr">  html_document:</span></span><br><span class="line"><span class="attr">    df_print:</span> <span class="string">paged</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"></span><br><span class="line"><span class="string">​```</span> <span class="string">&#123;r,</span> <span class="string">rows.print=5&#125;</span></span><br><span class="line"><span class="string">mtcars</span></span><br><span class="line"><span class="string">​```</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://bookdown.org/yihui/rmarkdown/images/paged.png" alt="mtcars"></p>
+<p>TABLE 3.2: The options for paged HTML tables. </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>max.print</td>
+<td>The number of rows to print.</td>
+</tr>
+<tr>
+<td>max.print</td>
+<td>The number of rows to print.</td>
+</tr>
+<tr>
+<td>cols.print</td>
+<td>The number of columns to display.</td>
+</tr>
+<tr>
+<td>cols.min.print</td>
+<td>The minimum number of columns to display.</td>
+</tr>
+<tr>
+<td>pages.print</td>
+<td>The number of pages to display under page navigation.</td>
+</tr>
+<tr>
+<td>pages.print</td>
+<td>The number of pages to display under page navigation.</td>
+</tr>
+<tr>
+<td>rownames.print</td>
+<td>When set to <code>FALSE</code> turns off row names.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="代码折叠"><a href="#代码折叠" class="headerlink" title="代码折叠"></a>代码折叠</h3><figure class="highlight yaml"><figcaption><span>代码隐藏</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">"Habits"</span></span><br><span class="line"><span class="attr">output:</span></span><br><span class="line"><span class="attr">  html_document:</span></span><br><span class="line"><span class="attr">    code_folding:</span> <span class="string">hide</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>code_folding: hide</code> ：初始默认不显示代码，查看者可点击进行显示；</li>
+<li><code>code_folding: show</code> ：初始默认显示代码，查看者可点击进行隐藏；</li>
+</ul>
+<h3 id="高级定制"><a href="#高级定制" class="headerlink" title="高级定制"></a>高级定制</h3><h4 id="保留-Markdown-文件"><a href="#保留-Markdown-文件" class="headerlink" title="保留 Markdown 文件"></a>保留 Markdown 文件</h4><p>当运行一个 R Markdown 文件（<code>*.Rmd</code>）时，将创造一个 Markdown 文件（<code>*.md</code>）并将该文件通过 Pandoc 转换为 HTML 文件。如果想要保留 Markdown 文件，可以使用 <code>keep_md</code> 选项：</p>
+<figure class="highlight yaml"><figcaption><span>保留 .md 文档</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">"Habits"</span></span><br><span class="line"><span class="attr">output:</span></span><br><span class="line"><span class="attr">  html_document:</span></span><br><span class="line"><span class="attr">    keep_md:</span> <span class="literal">true</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<h4 id="添加本地-HTML-文档"><a href="#添加本地-HTML-文档" class="headerlink" title="添加本地 HTML 文档"></a>添加本地 HTML 文档</h4><p>可以通过添加额外的 HTML 内容或完全替换核心 Pandoc 模板来完成更高级的输出定制。为了在文档头部或文档主体之前/之后包含内容，您可以使用以下选项： </p>
+<figure class="highlight yaml"><figcaption><span>添加 HTML 文档</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">"Habits"</span></span><br><span class="line"><span class="attr">output:</span></span><br><span class="line"><span class="attr">  html_document:</span></span><br><span class="line"><span class="attr">    includes:</span></span><br><span class="line"><span class="attr">      in_header:</span> <span class="string">header.html</span></span><br><span class="line"><span class="attr">      before_body:</span> <span class="string">doc_prefix.html</span></span><br><span class="line"><span class="attr">      after_body:</span> <span class="string">doc_suffix.html</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<h4 id="自定义模板"><a href="#自定义模板" class="headerlink" title="自定义模板"></a>自定义模板</h4><figure class="highlight yaml"><figcaption><span>自定义模板</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">"Habits"</span></span><br><span class="line"><span class="attr">output:</span></span><br><span class="line"><span class="attr">  html_document:</span></span><br><span class="line"><span class="attr">    template:</span> <span class="string">quarterly_report.html</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<p>有关模板的其他详细信息，请参考 <a href="http://pandoc.org/MANUAL.html#templates" target="_blank" rel="noopener">Pandoc 模板</a> 上的文档。您还可以研究默认的 HTML 模板 <a href="https://github.com/jgm/pandoc-templates/" target="_blank" rel="noopener"><code>default.html5</code></a> 。</p>
+<p>其他类型文档格式控制方式类似，如欲详细了解请 <a href="https://bookdown.org/yihui/rmarkdown/documents.html" target="_blank" rel="noopener">参考原作</a> 。</p>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+    
+  
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="郝建锋 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="郝建锋 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/R-Markdown/" rel="tag"><i class="fa fa-tag"></i> R Markdown</a>
+          
+            <a href="/tags/数据报告/" rel="tag"><i class="fa fa-tag"></i> 数据报告</a>
+          
+            <a href="/tags/可重复性/" rel="tag"><i class="fa fa-tag"></i> 可重复性</a>
+          
+            <a href="/tags/可视化/" rel="tag"><i class="fa fa-tag"></i> 可视化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/06/2018-07-06-那么长的暑假该，该怎么过？/" rel="next" title="那么长的暑假，该怎么过？">
+                <i class="fa fa-chevron-left"></i> 那么长的暑假，该怎么过？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/" class="site-author-image" rel="start" style="border:none">
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="郝建锋" />
+            </a>
+            
+              <p class="site-author-name" itemprop="name">郝建锋</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DivinerHJF" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.kaggle.com/haojianfeng" target="_blank" title="Kaggle">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Kaggle</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.linkedin.com/in/%E5%BB%BA%E9%94%8B-%E9%83%9D-ba3826133/" title="领英" target="_blank" rel="external nofollow">领英</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://konelane.github.io/" title="He核" target="_blank" rel="external nofollow">He核</a>
+                  </li>
+                
+              </ul>
+          <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("01/21/2018 00:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+            </div>
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">2.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文档结构"><span class="nav-number">2.1.</span> <span class="nav-text">文档结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档编译"><span class="nav-number">2.2.</span> <span class="nav-text">文档编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考卡片"><span class="nav-number">2.3.</span> <span class="nav-text">参考卡片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">2.4.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Markdown-语法"><span class="nav-number">2.5.</span> <span class="nav-text">Markdown 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内联格式"><span class="nav-number">2.5.1.</span> <span class="nav-text">内联格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块级元素"><span class="nav-number">2.5.2.</span> <span class="nav-text">块级元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学表达式"><span class="nav-number">2.5.3.</span> <span class="nav-text">数学表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码块选项"><span class="nav-number">2.6.</span> <span class="nav-text">代码块选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图片"><span class="nav-number">2.6.1.</span> <span class="nav-text">图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格"><span class="nav-number">2.6.2.</span> <span class="nav-text">表格</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出文档"><span class="nav-number">3.</span> <span class="nav-text">输出文档</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-文档"><span class="nav-number">3.1.</span> <span class="nav-text">HTML 文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录（Table-of-contents）"><span class="nav-number">3.1.1.</span> <span class="nav-text">目录（Table of contents）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录编号-Section-numbering"><span class="nav-number">3.1.2.</span> <span class="nav-text">目录编号 (Section numbering)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选项卡-Tabbed-sections"><span class="nav-number">3.1.3.</span> <span class="nav-text">选项卡 (Tabbed sections)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外观与风格"><span class="nav-number">3.1.4.</span> <span class="nav-text">外观与风格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片选项"><span class="nav-number">3.1.5.</span> <span class="nav-text">图片选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格打印"><span class="nav-number">3.1.6.</span> <span class="nav-text">表格打印</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码折叠"><span class="nav-number">3.1.7.</span> <span class="nav-text">代码折叠</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级定制"><span class="nav-number">3.1.8.</span> <span class="nav-text">高级定制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#保留-Markdown-文件"><span class="nav-number">3.1.8.1.</span> <span class="nav-text">保留 Markdown 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加本地-HTML-文档"><span class="nav-number">3.1.8.2.</span> <span class="nav-text">添加本地 HTML 文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义模板"><span class="nav-number">3.1.8.3.</span> <span class="nav-text">自定义模板</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 页脚地球 -->
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- 闲聊吧 -->
+
+  
+  
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Diviner</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+<span 
+  id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共30.9k字</span>
+</div>
+
+<div class="weixin-box">
+  <div class="weixin-menu">
+    <div class="weixin-hover">
+      <div class="weixin-description">欢迎订阅！</div>
+    </div>
+  </div>
+</div>
+        
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=65039272";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+    
+
+    
+
+
+    
+
+
+    <!-- bdshare BEGIN -->
+    <a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=e3bd58f2-b7ba-49b3-b590-25694389ee62&style=5&fs=2&bgcolor=Green"></script>
+    <!-- bdshare END -->
+
+  </div>
+  
+  <!-- DaoVoice留言板 BEGIN -->
+   <script>
+    daovoice('init', {
+      app_id: "07960529",
+      user_id: "NO_89757", // 必填: 该用户在您系统上的唯一ID
+      email: "daovoice@example.com", // 选填:  该用户在您系统上的主邮箱
+      name: "道客船长", // 选填: 用户名
+      signed_up: 1449821660 // 选填: 用户的注册时间，用Unix时间戳表示
+    });
+    daovoice('update');
+
+    daovoice('init', {
+      app_id: "07960529"
+    });
+    daovoice('update');
+  </script>
+  <!-- DaoVoice留言板 END -->
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'hgEcXnOfmL8iDWRYOEjtEGoa-gzGzoHsz',
+        appKey: 'qjVrCpos1yUadkalgX3XhAxF',
+        placeholder: '无需注册，畅所欲言',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("hgEcXnOfmL8iDWRYOEjtEGoa-gzGzoHsz", "qjVrCpos1yUadkalgX3XhAxF");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
