@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/bird.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bird.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bird.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/bird.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="R,apply,数据操作," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Diviner's BLOG" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="R 作为一种向量化的编程语言，一大特征便是以向量计算替代了循环计算，使效率大大提升。     apply函数族正是为解决数据循环处理问题而生的 —— 面向不同数据类型，生成不同返回值的包含8个相关函数的函数族。">
+<meta name="keywords" content="R,apply,数据操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据操作-apply函数族">
+<meta property="og:url" content="https://divinerhjf.github.io/2018/03/15/2018-03-15-数据操作-apply函数族/index.html">
+<meta property="og:site_name" content="Diviner&#39;s BLOG">
+<meta property="og:description" content="R 作为一种向量化的编程语言，一大特征便是以向量计算替代了循环计算，使效率大大提升。     apply函数族正是为解决数据循环处理问题而生的 —— 面向不同数据类型，生成不同返回值的包含8个相关函数的函数族。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p31gihke0.bkt.clouddn.com/apply函数.PNG">
+<meta property="og:updated_time" content="2018-03-17T02:45:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据操作-apply函数族">
+<meta name="twitter:description" content="R 作为一种向量化的编程语言，一大特征便是以向量计算替代了循环计算，使效率大大提升。     apply函数族正是为解决数据循环处理问题而生的 —— 面向不同数据类型，生成不同返回值的包含8个相关函数的函数族。">
+<meta name="twitter:image" content="http://p31gihke0.bkt.clouddn.com/apply函数.PNG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"perspectiveLeftIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"perspectiveLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索……","hits_empty":"我们没有找到: ${query}","hits_stats":"${hits} 找到结果共花费 ${time} 毫秒"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://divinerhjf.github.io/2018/03/15/2018-03-15-数据操作-apply函数族/"/>
+
+
+
+
+
+  <title>数据操作-apply函数族 | Diviner's BLOG</title>
+  
+
+
+
+
+
+
+
+
+
+
+  <!-- DaoVoice留言板 -->
+  <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/07960529.js","daovoice")</script>
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+  <a href="https://github.com/DivinerHJF" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Diviner's BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Live well, love lots, and laugh often.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/categories/碎碎念" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br />
+            
+            碎碎念
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://divinerhjf.github.io/2018/03/15/2018-03-15-数据操作-apply函数族/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郝建锋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Diviner's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据操作-apply函数族</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T12:19:00+08:00">
+                2018-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/R/" itemprop="url" rel="index">
+                    <span itemprop="name">R</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/15/2018-03-15-数据操作-apply函数族/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/15/2018-03-15-数据操作-apply函数族/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/15/2018-03-15-数据操作-apply函数族/" class="leancloud_visitors" data-flag-title="数据操作-apply函数族">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.5k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center><i>
+    R 作为一种向量化的编程语言，一大特征便是以向量计算替代了循环计算，使效率大大提升。<br>
+    apply函数族正是为解决数据循环处理问题而生的 —— 面向不同数据类型，生成不同返回值的包含8个相关函数的函数族。
+</i></center>
+
+<p><br><img src="http://p31gihke0.bkt.clouddn.com/apply函数.PNG" alt="apply函数.PNG"><br><a id="more"></a></p>
+<h2 id="为何要用apply？"><a href="#为何要用apply？" class="headerlink" title="为何要用apply？"></a>为何要用apply？</h2><p>在使用 R 时，要尽量用 array 的方式思考，避免 for 循环，写过多的 for 循环代码，最后把 R 代码写的跟 C 似得说明你没有进入 R 的思考方式，是一种费力不讨好的行为。那么不用循环怎么实现迭代呢？apply函数族是一把利器，它不是一个函数，而是一族功能类似的函数。</p>
+<p><br></p>
+<hr>
+<h2 id="语法详解"><a href="#语法详解" class="headerlink" title="语法详解"></a>语法详解</h2><h3 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h3><figure class="highlight r"><figcaption><span>apply-函数定义：在 X 上，沿 margin 方向，依次调用 FUN</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply(X, margin, FUN, <span class="keyword">...</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>参数列表：</strong><br>X：数组、矩阵、数据框<br>margin：按维度运算，1表示按行，2表示按列，c(1,3)表示第1、3维<br>FUN：要使用的函数</p>
+</blockquote>
+<span class="label info"><b>举例阐释</b></span>
+<figure class="highlight r"><figcaption><span>eg1-矩阵按列求和</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; mat &lt;- matrix(<span class="number">1</span>:<span class="number">12</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">&gt; mat</span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">4</span>    <span class="number">7</span>   <span class="number">10</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">5</span>    <span class="number">8</span>   <span class="number">11</span></span><br><span class="line">[<span class="number">3</span>,]    <span class="number">3</span>    <span class="number">6</span>    <span class="number">9</span>   <span class="number">12</span></span><br><span class="line"></span><br><span class="line">&gt; apply(mat, <span class="number">2</span>, sum)</span><br><span class="line">[<span class="number">1</span>]  <span class="number">6</span> <span class="number">15</span> <span class="number">24</span> <span class="number">33</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><figcaption><span>eg2-数组第1、3维度组合求和</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; ary &lt;- array(<span class="number">1</span>:<span class="number">12</span>, c(<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>))</span><br><span class="line">&gt; ary</span><br><span class="line">, , <span class="number">1</span></span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">3</span>    <span class="number">5</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">4</span>    <span class="number">6</span></span><br><span class="line">, , <span class="number">2</span></span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">7</span>    <span class="number">9</span>   <span class="number">11</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">8</span>   <span class="number">10</span>   <span class="number">12</span></span><br><span class="line"></span><br><span class="line">&gt; apply(ary, c(<span class="number">1</span>,<span class="number">3</span>), sum)</span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">9</span>   <span class="number">27</span></span><br><span class="line">[<span class="number">2</span>,]   <span class="number">12</span>   <span class="number">30</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><figcaption><span>eg3-数据框按列求均值</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; data &lt;- data.frame(x1=<span class="number">1</span>:<span class="number">5</span>, x2=<span class="number">6</span>:<span class="number">10</span>)</span><br><span class="line">&gt; data</span><br><span class="line">  x1 x2</span><br><span class="line"><span class="number">1</span>  <span class="number">1</span>  <span class="number">6</span></span><br><span class="line"><span class="number">2</span>  <span class="number">2</span>  <span class="number">7</span></span><br><span class="line"><span class="number">3</span>  <span class="number">3</span>  <span class="number">8</span></span><br><span class="line"><span class="number">4</span>  <span class="number">4</span>  <span class="number">9</span></span><br><span class="line"><span class="number">5</span>  <span class="number">5</span> <span class="number">10</span></span><br><span class="line"></span><br><span class="line">&gt; apply(data, <span class="number">2</span>, mean)</span><br><span class="line">x1 x2 </span><br><span class="line"> <span class="number">3</span>  <span class="number">8</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="tapply"><a href="#tapply" class="headerlink" title="tapply"></a>tapply</h3><figure class="highlight r"><figcaption><span>tapply-函数定义：按 INDEX 值分组，相同值对应下标的 X 中的元素形成一个集合，应用到 FUN</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tapply(X, INDEX, FUN = <span class="literal">NULL</span>, <span class="keyword">...</span>, simplify = <span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>参数列表：</strong><br>X：向量、数组<br>INDEX：用于分组的索引<br>FUN：要使用的函数<br>simplify : 是否数组化，当值TRUE时，输出结果按数组进行分组输出</p>
+</blockquote>
+<span class="label info"><b>举例阐释</b></span>
+<figure class="highlight r"><figcaption><span>eg1-当FUN为NULL，返回分组的结果，返回值中相等的元素所对应的下标属于同一组</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; x &lt;- <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">&gt; INDEX &lt;- c(<span class="string">'a'</span>,<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'c'</span>,<span class="string">'c'</span>)</span><br><span class="line">&gt; tapply(x, INDEX)</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">3</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><figcaption><span>eg2-向量按 INDEX 分组求和</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; tapply(x, INDEX, sum)</span><br><span class="line"> a  b  c </span><br><span class="line"> <span class="number">3</span>  <span class="number">3</span> <span class="number">15</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><figcaption><span>eg3-矩阵按 INDEX 分组求均值</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; mat &lt;- matrix(<span class="number">1</span>:<span class="number">10</span>, <span class="number">2</span>)</span><br><span class="line">&gt; mat</span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>] [,<span class="number">5</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">3</span>    <span class="number">5</span>    <span class="number">7</span>    <span class="number">9</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">4</span>    <span class="number">6</span>    <span class="number">8</span>   <span class="number">10</span></span><br><span class="line">&gt; INDEX &lt;- matrix(c(rep(<span class="number">1</span>,<span class="number">5</span>), rep(<span class="number">2</span>,<span class="number">5</span>)), nrow=<span class="number">2</span>)</span><br><span class="line">&gt; INDEX</span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>] [,<span class="number">5</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">1</span>    <span class="number">1</span>    <span class="number">2</span>    <span class="number">2</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">1</span>    <span class="number">1</span>    <span class="number">2</span>    <span class="number">2</span>    <span class="number">2</span></span><br><span class="line">&gt; tapply(mat, INDEX)</span><br><span class="line"> [<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">2</span> <span class="number">2</span> <span class="number">2</span> <span class="number">2</span></span><br><span class="line">&gt; tapply(mat, INDEX, mean)</span><br><span class="line"><span class="number">1</span> <span class="number">2</span> </span><br><span class="line"><span class="number">3</span> <span class="number">8</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="lapply"><a href="#lapply" class="headerlink" title="lapply"></a>lapply</h3><figure class="highlight r"><figcaption><span>lapply-函数定义：在 X 上逐个元素调用 FUN, 返回和 X 等长的 list 作为结果集</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lapply(X, FUN, <span class="keyword">...</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>参数列表：</strong><br>X：列表、向量、数据框<br>FUN：要使用的函数</p>
+</blockquote>
+<span class="label info"><b>举例阐释</b></span>
+<figure class="highlight r"><figcaption><span>eg1-计算 list 中的每个 KEY 对应数据的均值</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; lst &lt;- list(a=<span class="number">1</span>:<span class="number">10</span>, b=seq(<span class="number">0</span>,<span class="number">7</span>,<span class="number">2</span>), c=c(<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>))</span><br><span class="line">&gt; lst</span><br><span class="line">$a</span><br><span class="line"> [<span class="number">1</span>]  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span></span><br><span class="line">$b</span><br><span class="line">[<span class="number">1</span>] <span class="number">0</span> <span class="number">2</span> <span class="number">4</span> <span class="number">6</span></span><br><span class="line">$c</span><br><span class="line">[<span class="number">1</span>] <span class="number">2</span> <span class="number">5</span> <span class="number">8</span></span><br><span class="line"></span><br><span class="line">&gt; lapply(lst, mean)</span><br><span class="line">$a</span><br><span class="line">[<span class="number">1</span>] <span class="number">5.5</span></span><br><span class="line">$b</span><br><span class="line">[<span class="number">1</span>] <span class="number">3</span></span><br><span class="line">$c</span><br><span class="line">[<span class="number">1</span>] <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><figcaption><span>eg2-对数据框的列求和</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; data &lt;- data.frame(x1=<span class="number">1</span>:<span class="number">5</span>, x2=<span class="number">6</span>:<span class="number">10</span>)</span><br><span class="line">&gt; data</span><br><span class="line">  x1 x2</span><br><span class="line"><span class="number">1</span>  <span class="number">1</span>  <span class="number">6</span></span><br><span class="line"><span class="number">2</span>  <span class="number">2</span>  <span class="number">7</span></span><br><span class="line"><span class="number">3</span>  <span class="number">3</span>  <span class="number">8</span></span><br><span class="line"><span class="number">4</span>  <span class="number">4</span>  <span class="number">9</span></span><br><span class="line"><span class="number">5</span>  <span class="number">5</span> <span class="number">10</span></span><br><span class="line">&gt; lapply(data, sum)</span><br><span class="line">$x1</span><br><span class="line">[<span class="number">1</span>] <span class="number">15</span></span><br><span class="line">$x2</span><br><span class="line">[<span class="number">1</span>] <span class="number">40</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><figcaption><span>eg3-找出闰年：对向量内各元素依次调用函数</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; isLeapYear &lt;- <span class="keyword">function</span>(a)&#123;</span><br><span class="line">+   <span class="keyword">if</span>( (a%%<span class="number">4</span>==<span class="number">0</span> &amp; a%/%<span class="number">100</span>!=<span class="number">0</span>) | a%%<span class="number">400</span>==<span class="number">0</span> )</span><br><span class="line">+     a</span><br><span class="line">+ &#125;</span><br><span class="line">&gt; a &lt;- <span class="number">1900</span>:<span class="number">1910</span></span><br><span class="line">&gt; unlist(lapply(a, isLeapYear))</span><br><span class="line">[<span class="number">1</span>] <span class="number">1900</span> <span class="number">1904</span> <span class="number">1908</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="rapply"><a href="#rapply" class="headerlink" title="rapply"></a>rapply</h3><figure class="highlight r"><figcaption><span>rapply-函数定义：递归版lapply，对list遍历直至无list，最终非list元素若类型是classes参数指定的类型，则调用FUN</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rapply(list, f, classes = <span class="string">"ANY"</span>, deflt = <span class="literal">NULL</span>,how = c(<span class="string">"unlist"</span>, <span class="string">"replace"</span>, <span class="string">"list"</span>), <span class="keyword">...</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>参数列表：</strong><br>list：列表<br>f：要使用的函数<br>classes： 匹配类型, ANY为所有类型<br>deflt: 非匹配类型的默认值<br>how: 3种操作方式，</p>
+<ul>
+<li>replace：则用调用f后的结果替换原list中原来的元素；</li>
+<li>list：新建一个list，类型匹配调用f函数，不匹配赋值为deflt；</li>
+<li>unlist：执行一次unlist(recursive = TRUE)操作</li>
+</ul>
+</blockquote>
+<span class="label info"><b>举例阐释</b></span>
+<figure class="highlight r"><figcaption><span>eg1-遍历 list 分组求和</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&gt; lst &lt;- list(a=list(aa=c(<span class="number">1</span>:<span class="number">5</span>), ab=c(<span class="number">6</span>:<span class="number">10</span>)), b=list(ba=c(<span class="number">1</span>:<span class="number">10</span>)))</span><br><span class="line">&gt; lst</span><br><span class="line">$a</span><br><span class="line">$a$aa</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line">$a$ab</span><br><span class="line">[<span class="number">1</span>]  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span></span><br><span class="line">$b</span><br><span class="line">$b$ba</span><br><span class="line"> [<span class="number">1</span>]  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span></span><br><span class="line"></span><br><span class="line">&gt; rapply(lst, sum, how=<span class="string">"replace"</span>)  <span class="comment"># 输出结果为list</span></span><br><span class="line">$a</span><br><span class="line">$a$aa</span><br><span class="line">[<span class="number">1</span>] <span class="number">15</span></span><br><span class="line">$a$ab</span><br><span class="line">[<span class="number">1</span>] <span class="number">40</span></span><br><span class="line">$b</span><br><span class="line">$b$ba</span><br><span class="line">[<span class="number">1</span>] <span class="number">55</span></span><br><span class="line"></span><br><span class="line">&gt; rapply(lst, sum, how=<span class="string">"unlist"</span>)   <span class="comment"># 输出结果为vector</span></span><br><span class="line">a.aa a.ab b.ba </span><br><span class="line">  <span class="number">15</span>   <span class="number">40</span>   <span class="number">55</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="sapply"><a href="#sapply" class="headerlink" title="sapply"></a>sapply</h3><figure class="highlight r"><figcaption><span>sapply-函数定义：简化版lapply，增加参数simplify和USE.NAMES，可设定输出类型</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sapply(X, FUN, <span class="keyword">...</span>, simplify = <span class="literal">TRUE</span>, USE.NAMES = <span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>参数列表：</strong><br>X：列表、向量、数据框<br>FUN：要使用的函数<br>simplify: 若FALSE，等价于lapply。否则，将lapply输出的list简化为vector或matrix<br>USE.NAMES: 如果X为字符串，TRUE设置字符串为数据名，FALSE不设置</p>
+</blockquote>
+<span class="label info"><b>举例阐释</b></span>
+<figure class="highlight r"><figcaption><span>eg1-simplify参数设定输出类型</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt; lst &lt;- list(a=c(<span class="number">1</span>:<span class="number">5</span>), b=c(<span class="number">6</span>:<span class="number">10</span>))</span><br><span class="line">&gt; sapply(lst, sum, simplify = <span class="literal">F</span>)    <span class="comment"># 输出list</span></span><br><span class="line">$a</span><br><span class="line">[<span class="number">1</span>] <span class="number">15</span></span><br><span class="line">$b</span><br><span class="line">[<span class="number">1</span>] <span class="number">40</span></span><br><span class="line"></span><br><span class="line">&gt; sapply(lst, sum)                  <span class="comment"># 输出vector</span></span><br><span class="line"> a  b </span><br><span class="line"><span class="number">15</span> <span class="number">40</span> </span><br><span class="line"></span><br><span class="line">&gt; sapply(lst, fivenum)              <span class="comment"># 输出matrix</span></span><br><span class="line">     a  b</span><br><span class="line">[<span class="number">1</span>,] <span class="number">1</span>  <span class="number">6</span></span><br><span class="line">[<span class="number">2</span>,] <span class="number">2</span>  <span class="number">7</span></span><br><span class="line">[<span class="number">3</span>,] <span class="number">3</span>  <span class="number">8</span></span><br><span class="line">[<span class="number">4</span>,] <span class="number">4</span>  <span class="number">9</span></span><br><span class="line">[<span class="number">5</span>,] <span class="number">5</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><figcaption><span>eg2-USE.NAMES参数作用</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; val &lt;- head(letters)</span><br><span class="line">&gt; val</span><br><span class="line">[<span class="number">1</span>] <span class="string">"a"</span> <span class="string">"b"</span> <span class="string">"c"</span> <span class="string">"d"</span> <span class="string">"e"</span> <span class="string">"f"</span></span><br><span class="line">&gt; sapply(val, paste)</span><br><span class="line">  a   b   c   d   e   f </span><br><span class="line"><span class="string">"a"</span> <span class="string">"b"</span> <span class="string">"c"</span> <span class="string">"d"</span> <span class="string">"e"</span> <span class="string">"f"</span> </span><br><span class="line">&gt; sapply(val, paste, USE.NAMES = <span class="literal">F</span>)</span><br><span class="line">[<span class="number">1</span>] <span class="string">"a"</span> <span class="string">"b"</span> <span class="string">"c"</span> <span class="string">"d"</span> <span class="string">"e"</span> <span class="string">"f"</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="vapply"><a href="#vapply" class="headerlink" title="vapply"></a>vapply</h3><figure class="highlight r"><figcaption><span>vapply-函数定义：类似sapply，但提供参数FUN.VALUE用以设定返回值的行名</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vapply(X, FUN, FUN.VALUE, <span class="keyword">...</span>, USE.NAMES = <span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>参数列表：</strong><br>X：列表、数据框<br>FUN：要使用的函数<br>FUN.VALUE：定义返回值的行名row.names<br>USE.NAMES: 如果X为字符串，TRUE设置字符串为数据名，FALSE不设置</p>
+</blockquote>
+<span class="label info"><b>举例阐释</b></span>
+<figure class="highlight r"><figcaption><span>eg1-FUN.VALUE参数设置返回值行名</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; lst &lt;- list(a=c(<span class="number">1</span>:<span class="number">5</span>), b=c(<span class="number">6</span>:<span class="number">10</span>))</span><br><span class="line">&gt; res &lt;- vapply(lst, <span class="keyword">function</span>(x) c(min(x), max(x)), c(min.=<span class="number">0</span>, max.=<span class="number">0</span>))</span><br><span class="line">&gt; res</span><br><span class="line">     a  b</span><br><span class="line">min. <span class="number">1</span>  <span class="number">6</span></span><br><span class="line">max. <span class="number">5</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><figcaption><span>eg2-对数据框的数据累计求和，并对每一行设置行名row.names</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; data &lt;- data.frame(cbind(x1=<span class="number">3</span>, x2=c(<span class="number">2</span>:<span class="number">1</span>,<span class="number">4</span>:<span class="number">5</span>)))</span><br><span class="line">&gt; data</span><br><span class="line">  x1 x2</span><br><span class="line"><span class="number">1</span>  <span class="number">3</span>  <span class="number">2</span></span><br><span class="line"><span class="number">2</span>  <span class="number">3</span>  <span class="number">1</span></span><br><span class="line"><span class="number">3</span>  <span class="number">3</span>  <span class="number">4</span></span><br><span class="line"><span class="number">4</span>  <span class="number">3</span>  <span class="number">5</span></span><br><span class="line"></span><br><span class="line">&gt; vapply(data, cumsum, FUN.VALUE=c(<span class="string">'a'</span>=<span class="number">0</span>,<span class="string">'b'</span>=<span class="number">0</span>,<span class="string">'c'</span>=<span class="number">0</span>,<span class="string">'d'</span>=<span class="number">0</span>))</span><br><span class="line">  x1 x2</span><br><span class="line">a  <span class="number">3</span>  <span class="number">2</span></span><br><span class="line">b  <span class="number">6</span>  <span class="number">3</span></span><br><span class="line">c  <span class="number">9</span>  <span class="number">7</span></span><br><span class="line">d <span class="number">12</span> <span class="number">12</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="mapply"><a href="#mapply" class="headerlink" title="mapply"></a>mapply</h3><figure class="highlight r"><figcaption><span>mapply-函数定义：多变量版sapply，将FUN应用于多个同结构数据第一个元素组成的数组，然后是第二个元素组成的数组，依此类推</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapply(FUN, <span class="keyword">...</span>, MoreArgs=<span class="literal">NULL</span>, SIMPLIFY=<span class="literal">TRUE</span>, USE.NAMES=<span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>参数列表：</strong><br>FUN：要使用的函数<br>…: 接收多个数据(list、vector)<br>MoreArgs: FUN的参数列表<br>simplify: 若FALSE，输出list。否则，将输出的list简化为vector或matrix<br>USE.NAMES: 如果X为字符串，TRUE设置字符串为数据名，FALSE不设置</p>
+</blockquote>
+<span class="label info"><b>举例阐释</b></span>
+<figure class="highlight r"><figcaption><span>eg1-输入两个list并分组求和</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; mapply(sum, list(a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>), list(a=<span class="number">10</span>,b=<span class="number">20</span>,d=<span class="number">30</span>))</span><br><span class="line"> a  b  c </span><br><span class="line"><span class="number">11</span> <span class="number">22</span> <span class="number">33</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><figcaption><span>eg2-比较两个向量大小，按索引顺序取较大的值</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; a &lt;- <span class="number">1</span>:<span class="number">10</span></span><br><span class="line">&gt; b &lt;- <span class="number">5</span>:-<span class="number">4</span></span><br><span class="line">&gt; a</span><br><span class="line"> [<span class="number">1</span>]  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span></span><br><span class="line">&gt; b</span><br><span class="line"> [<span class="number">1</span>]  <span class="number">5</span>  <span class="number">4</span>  <span class="number">3</span>  <span class="number">2</span>  <span class="number">1</span>  <span class="number">0</span> -<span class="number">1</span> -<span class="number">2</span> -<span class="number">3</span> -<span class="number">4</span></span><br><span class="line">&gt; mapply(max, a, b)</span><br><span class="line"> [<span class="number">1</span>]  <span class="number">5</span>  <span class="number">4</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><figcaption><span>eg3-输入向量，返回值多个时返回matrix</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; mapply(<span class="keyword">function</span>(x,y) c(x+y, x^y, x-y), c(<span class="number">1</span>:<span class="number">5</span>), c(<span class="number">1</span>:<span class="number">5</span>))</span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>] [,<span class="number">5</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">2</span>    <span class="number">4</span>    <span class="number">6</span>    <span class="number">8</span>   <span class="number">10</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">1</span>    <span class="number">4</span>   <span class="number">27</span>  <span class="number">256</span> <span class="number">3125</span></span><br><span class="line">[<span class="number">3</span>,]    <span class="number">0</span>    <span class="number">0</span>    <span class="number">0</span>    <span class="number">0</span>    <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="eapply"><a href="#eapply" class="headerlink" title="eapply"></a>eapply</h3><figure class="highlight r"><figcaption><span>eapply-函数定义：对一个环境空间中的所有变量进行遍历</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eapply(env, FUN, <span class="keyword">...</span>, all.names = <span class="literal">FALSE</span>, USE.NAMES = <span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>参数列表：</strong><br>env: 环境空间<br>FUN：要使用的函数<br>all.names: 匹配类型, ANY为所有类型<br>USE.NAMES: 如果X为字符串，TRUE设置字符串为数据名，FALSE不设置</p>
+</blockquote>
+<span class="label info"><b>举例阐释</b></span>
+<figure class="highlight r"><figcaption><span>eg-eapply操作示例</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment"># 定义一个环境空间</span></span><br><span class="line">&gt; env &lt;- new.env()</span><br><span class="line">&gt; <span class="comment"># 向这个环境空间中存入3个变量</span></span><br><span class="line">&gt; env$a &lt;- <span class="number">1</span>:<span class="number">10</span></span><br><span class="line">&gt; env$b &lt;- exp(-<span class="number">3</span>:<span class="number">3</span>)</span><br><span class="line">&gt; env$logic &lt;- c(<span class="literal">TRUE</span>, <span class="literal">FALSE</span>, <span class="literal">FALSE</span>, <span class="literal">TRUE</span>)</span><br><span class="line"></span><br><span class="line">&gt; ls(env)      <span class="comment"># 查看env空间中的变量</span></span><br><span class="line">[<span class="number">1</span>] <span class="string">"a"</span>     <span class="string">"b"</span>     <span class="string">"logic"</span></span><br><span class="line">&gt; ls.str(env)  <span class="comment"># 查看env空间中的变量字符串结构</span></span><br><span class="line">a :  int [<span class="number">1</span>:<span class="number">10</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span> <span class="number">10</span></span><br><span class="line">b :  num [<span class="number">1</span>:<span class="number">7</span>] <span class="number">0.0498</span> <span class="number">0.1353</span> <span class="number">0.3679</span> <span class="number">1</span> <span class="number">2.7183</span> <span class="keyword">...</span></span><br><span class="line">logic :  logi [<span class="number">1</span>:<span class="number">4</span>] <span class="literal">TRUE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span> <span class="literal">TRUE</span></span><br><span class="line"></span><br><span class="line">&gt; eapply(env, mean)   <span class="comment"># 计算env环境空间中所有变量的均值</span></span><br><span class="line">$a</span><br><span class="line">[<span class="number">1</span>] <span class="number">5.5</span></span><br><span class="line">$b</span><br><span class="line">[<span class="number">1</span>] <span class="number">4.535125</span></span><br><span class="line">$logic</span><br><span class="line">[<span class="number">1</span>] <span class="number">0.5</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<hr>
+<h2 id="应用及拓展"><a href="#应用及拓展" class="headerlink" title="应用及拓展"></a>应用及拓展</h2><h3 id="应用展示"><a href="#应用展示" class="headerlink" title="应用展示"></a>应用展示</h3><p>原始数据为按年份year、地区loc和商品类别type进行统计的销售量。我们要制作两个销售总量的crosstable，一个以年份为行、地区为列，一个以年份为行，类别为列。<br><figure class="highlight r"><figcaption><span>应用1-tapply实现crosstable功能</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&gt; df &lt;- data.frame(year=kronecker(<span class="number">2001</span>:<span class="number">2003</span>, rep(<span class="number">1</span>,<span class="number">4</span>)), </span><br><span class="line">                 loc=c(<span class="string">'beijing'</span>,<span class="string">'beijing'</span>,<span class="string">'shanghai'</span>,<span class="string">'shanghai'</span>), </span><br><span class="line">                 type=rep(c(<span class="string">'A'</span>,<span class="string">'B'</span>),<span class="number">6</span>), sale=rep(<span class="number">1</span>:<span class="number">12</span>))</span><br><span class="line">&gt; df</span><br><span class="line">   year      loc type sale</span><br><span class="line"><span class="number">1</span>  <span class="number">2001</span>  beijing    A    <span class="number">1</span></span><br><span class="line"><span class="number">2</span>  <span class="number">2001</span>  beijing    B    <span class="number">2</span></span><br><span class="line"><span class="number">3</span>  <span class="number">2001</span> shanghai    A    <span class="number">3</span></span><br><span class="line"><span class="number">4</span>  <span class="number">2001</span> shanghai    B    <span class="number">4</span></span><br><span class="line"><span class="number">5</span>  <span class="number">2002</span>  beijing    A    <span class="number">5</span></span><br><span class="line"><span class="number">6</span>  <span class="number">2002</span>  beijing    B    <span class="number">6</span></span><br><span class="line"><span class="number">7</span>  <span class="number">2002</span> shanghai    A    <span class="number">7</span></span><br><span class="line"><span class="number">8</span>  <span class="number">2002</span> shanghai    B    <span class="number">8</span></span><br><span class="line"><span class="number">9</span>  <span class="number">2003</span>  beijing    A    <span class="number">9</span></span><br><span class="line"><span class="number">10</span> <span class="number">2003</span>  beijing    B   <span class="number">10</span></span><br><span class="line"><span class="number">11</span> <span class="number">2003</span> shanghai    A   <span class="number">11</span></span><br><span class="line"><span class="number">12</span> <span class="number">2003</span> shanghai    B   <span class="number">12</span></span><br><span class="line"></span><br><span class="line">&gt; tapply(df$sale, df[,c(<span class="string">'year'</span>,<span class="string">'loc'</span>)], sum)</span><br><span class="line">      loc</span><br><span class="line">year   beijing shanghai</span><br><span class="line">  <span class="number">2001</span>       <span class="number">3</span>        <span class="number">7</span></span><br><span class="line">  <span class="number">2002</span>      <span class="number">11</span>       <span class="number">15</span></span><br><span class="line">  <span class="number">2003</span>      <span class="number">19</span>       <span class="number">23</span></span><br><span class="line"></span><br><span class="line">&gt; tapply(df$sale, df[,c(<span class="string">'year'</span>,<span class="string">'type'</span>)], sum)</span><br><span class="line">      type</span><br><span class="line">year    A  B</span><br><span class="line">  <span class="number">2001</span>  <span class="number">4</span>  <span class="number">6</span></span><br><span class="line">  <span class="number">2002</span> <span class="number">12</span> <span class="number">14</span></span><br><span class="line">  <span class="number">2003</span> <span class="number">20</span> <span class="number">22</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight r"><figcaption><span>应用2-mapply使两个嵌套列表对应项相加</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&gt; list1 &lt;- list(a=<span class="number">1</span>:<span class="number">5</span>, b=list(c=<span class="number">1</span>:<span class="number">4</span>, d=<span class="number">5</span>:<span class="number">9</span>))</span><br><span class="line">&gt; list1</span><br><span class="line">$a</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line">$b</span><br><span class="line">$b$c</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line">$b$d</span><br><span class="line">[<span class="number">1</span>] <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span></span><br><span class="line"></span><br><span class="line">&gt; list2 &lt;- list(a=<span class="number">1</span>:<span class="number">5</span>, b=list(c=<span class="number">5</span>:<span class="number">8</span>, d=<span class="number">1</span>:<span class="number">5</span>))</span><br><span class="line">&gt; list2</span><br><span class="line">$a</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line">$b</span><br><span class="line">$b$c</span><br><span class="line">[<span class="number">1</span>] <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span></span><br><span class="line">$b$d</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="string">"%+%"</span> &lt;- <span class="keyword">function</span>(x,y) mapply(<span class="string">"+"</span>, x, y)</span><br><span class="line">&gt; mapply(<span class="string">"%+%"</span>, list1, list2)</span><br><span class="line">$a</span><br><span class="line">[<span class="number">1</span>]  <span class="number">2</span>  <span class="number">4</span>  <span class="number">6</span>  <span class="number">8</span> <span class="number">10</span></span><br><span class="line">$b</span><br><span class="line">$b$c</span><br><span class="line">[<span class="number">1</span>]  <span class="number">6</span>  <span class="number">8</span> <span class="number">10</span> <span class="number">12</span></span><br><span class="line">$b$d</span><br><span class="line">[<span class="number">1</span>]  <span class="number">6</span>  <span class="number">8</span> <span class="number">10</span> <span class="number">12</span> <span class="number">14</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h3><h4 id="by"><a href="#by" class="headerlink" title="by"></a>by</h4><figure class="highlight r"><figcaption><span>by-函数定义：by可以当成data.frame上的tapply，在数据框行上施用索引分组运算</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">by(data, INDICES, FUN, <span class="keyword">...</span>, simplify = <span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>参数列表：</strong><br>data: 数据框<br>INDICES：与数据框行数等长的用于分组的索引<br>FUN：要使用的函数</p>
+</blockquote>
+<span class="label info"><b>举例阐释</b></span>
+<figure class="highlight r"><figcaption><span>eg-by对数据框进行按行索引分组计算</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&gt; data &lt;- data.frame(a=c(<span class="number">1</span>:<span class="number">5</span>), b=c(<span class="number">6</span>:<span class="number">10</span>))</span><br><span class="line">&gt; data</span><br><span class="line">  a  b</span><br><span class="line"><span class="number">1</span> <span class="number">1</span>  <span class="number">6</span></span><br><span class="line"><span class="number">2</span> <span class="number">2</span>  <span class="number">7</span></span><br><span class="line"><span class="number">3</span> <span class="number">3</span>  <span class="number">8</span></span><br><span class="line"><span class="number">4</span> <span class="number">4</span>  <span class="number">9</span></span><br><span class="line"><span class="number">5</span> <span class="number">5</span> <span class="number">10</span></span><br><span class="line">&gt; INDICES &lt;- c(<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">&gt; by(data, INDICES, colMeans)</span><br><span class="line">INDICES: <span class="number">1</span></span><br><span class="line">  a   b </span><br><span class="line"><span class="number">1.5</span> <span class="number">6.5</span> </span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">INDICES: <span class="number">2</span></span><br><span class="line">a b </span><br><span class="line"><span class="number">4</span> <span class="number">9</span> </span><br><span class="line">&gt; by(data, INDICES, rowMeans)</span><br><span class="line">INDICES: <span class="number">1</span></span><br><span class="line">  <span class="number">1</span>   <span class="number">2</span> </span><br><span class="line"><span class="number">3.5</span> <span class="number">4.5</span> </span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">INDICES: <span class="number">2</span></span><br><span class="line">  <span class="number">3</span>   <span class="number">4</span>   <span class="number">5</span> </span><br><span class="line"><span class="number">5.5</span> <span class="number">6.5</span> <span class="number">7.5</span></span><br></pre></td></tr></table></figure>
+<h4 id="outer"><a href="#outer" class="headerlink" title="outer"></a>outer</h4><figure class="highlight r"><figcaption><span>outer-函数定义：作用于数组的类似于矩阵外积运算方式的运算函数</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outer(X, Y, FUN = <span class="string">"*"</span>, <span class="keyword">...</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>参数列表：</strong><br>X、Y: 向量、数组<br>FUN：当为空时即为外积运算，否则为将FUN代替外积运算符进行类似外积的运算操作</p>
+</blockquote>
+<span class="label info"><b>举例阐释</b></span>
+<figure class="highlight r"><figcaption><span>eg-outer的使用</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&gt; x &lt;- <span class="number">1</span>:<span class="number">4</span>; y &lt;- <span class="number">2</span>:<span class="number">4</span></span><br><span class="line">&gt; x; y</span><br><span class="line">[<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line">[<span class="number">1</span>] <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line">&gt; outer(x, y)</span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">2</span>    <span class="number">3</span>    <span class="number">4</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">4</span>    <span class="number">6</span>    <span class="number">8</span></span><br><span class="line">[<span class="number">3</span>,]    <span class="number">6</span>    <span class="number">9</span>   <span class="number">12</span></span><br><span class="line">[<span class="number">4</span>,]    <span class="number">8</span>   <span class="number">12</span>   <span class="number">16</span></span><br><span class="line"></span><br><span class="line">&gt; month.abb</span><br><span class="line"> [<span class="number">1</span>] <span class="string">"Jan"</span> <span class="string">"Feb"</span> <span class="string">"Mar"</span> <span class="string">"Apr"</span> <span class="string">"May"</span> <span class="string">"Jun"</span> <span class="string">"Jul"</span> <span class="string">"Aug"</span> <span class="string">"Sep"</span> <span class="string">"Oct"</span> <span class="string">"Nov"</span> <span class="string">"Dec"</span></span><br><span class="line">&gt; outer(month.abb, <span class="number">1999</span>:<span class="number">2003</span>, FUN = <span class="string">"paste"</span>)</span><br><span class="line">      [,<span class="number">1</span>]       [,<span class="number">2</span>]       [,<span class="number">3</span>]       [,<span class="number">4</span>]       [,<span class="number">5</span>]      </span><br><span class="line"> [<span class="number">1</span>,] <span class="string">"Jan 1999"</span> <span class="string">"Jan 2000"</span> <span class="string">"Jan 2001"</span> <span class="string">"Jan 2002"</span> <span class="string">"Jan 2003"</span></span><br><span class="line"> [<span class="number">2</span>,] <span class="string">"Feb 1999"</span> <span class="string">"Feb 2000"</span> <span class="string">"Feb 2001"</span> <span class="string">"Feb 2002"</span> <span class="string">"Feb 2003"</span></span><br><span class="line"> [<span class="number">3</span>,] <span class="string">"Mar 1999"</span> <span class="string">"Mar 2000"</span> <span class="string">"Mar 2001"</span> <span class="string">"Mar 2002"</span> <span class="string">"Mar 2003"</span></span><br><span class="line"> [<span class="number">4</span>,] <span class="string">"Apr 1999"</span> <span class="string">"Apr 2000"</span> <span class="string">"Apr 2001"</span> <span class="string">"Apr 2002"</span> <span class="string">"Apr 2003"</span></span><br><span class="line"> [<span class="number">5</span>,] <span class="string">"May 1999"</span> <span class="string">"May 2000"</span> <span class="string">"May 2001"</span> <span class="string">"May 2002"</span> <span class="string">"May 2003"</span></span><br><span class="line"> [<span class="number">6</span>,] <span class="string">"Jun 1999"</span> <span class="string">"Jun 2000"</span> <span class="string">"Jun 2001"</span> <span class="string">"Jun 2002"</span> <span class="string">"Jun 2003"</span></span><br><span class="line"> [<span class="number">7</span>,] <span class="string">"Jul 1999"</span> <span class="string">"Jul 2000"</span> <span class="string">"Jul 2001"</span> <span class="string">"Jul 2002"</span> <span class="string">"Jul 2003"</span></span><br><span class="line"> [<span class="number">8</span>,] <span class="string">"Aug 1999"</span> <span class="string">"Aug 2000"</span> <span class="string">"Aug 2001"</span> <span class="string">"Aug 2002"</span> <span class="string">"Aug 2003"</span></span><br><span class="line"> [<span class="number">9</span>,] <span class="string">"Sep 1999"</span> <span class="string">"Sep 2000"</span> <span class="string">"Sep 2001"</span> <span class="string">"Sep 2002"</span> <span class="string">"Sep 2003"</span></span><br><span class="line">[<span class="number">10</span>,] <span class="string">"Oct 1999"</span> <span class="string">"Oct 2000"</span> <span class="string">"Oct 2001"</span> <span class="string">"Oct 2002"</span> <span class="string">"Oct 2003"</span></span><br><span class="line">[<span class="number">11</span>,] <span class="string">"Nov 1999"</span> <span class="string">"Nov 2000"</span> <span class="string">"Nov 2001"</span> <span class="string">"Nov 2002"</span> <span class="string">"Nov 2003"</span></span><br><span class="line">[<span class="number">12</span>,] <span class="string">"Dec 1999"</span> <span class="string">"Dec 2000"</span> <span class="string">"Dec 2001"</span> <span class="string">"Dec 2002"</span> <span class="string">"Dec 2003"</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="sweep"><a href="#sweep" class="headerlink" title="sweep"></a>sweep</h4><figure class="highlight r"><figcaption><span>sweep-函数定义：对数组、矩阵按维度进行运算</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sweep(x, MARGIN, STATS, FUN = <span class="string">"-"</span>, check.margin = <span class="literal">TRUE</span>, <span class="keyword">...</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>参数列表：</strong><br>x: 数组、矩阵<br>MARGIN：运算维度，1表示行，2表示列，3即第三维度，以此类推<br>STATS：运算参数，类似于减法中的减数，除法中的除数<br>FUN：要使用的函数</p>
+</blockquote>
+<span class="label info"><b>举例阐释</b></span>
+<figure class="highlight r"><figcaption><span>eg1-对数组按行运算</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; mat &lt;- matrix(<span class="number">1</span>:<span class="number">9</span>, <span class="number">3</span>)</span><br><span class="line">&gt; mat</span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">4</span>    <span class="number">7</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">5</span>    <span class="number">8</span></span><br><span class="line">[<span class="number">3</span>,]    <span class="number">3</span>    <span class="number">6</span>    <span class="number">9</span></span><br><span class="line"></span><br><span class="line">&gt; sweep(mat, <span class="number">1</span>, c(<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>), <span class="string">"+"</span>)  <span class="comment"># 第一行都加1，第二行都加4，第三行都加7</span></span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">2</span>    <span class="number">5</span>    <span class="number">8</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">6</span>    <span class="number">9</span>   <span class="number">12</span></span><br><span class="line">[<span class="number">3</span>,]   <span class="number">10</span>   <span class="number">13</span>   <span class="number">16</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><figcaption><span>eg2-STATS可为其他格式，但注意与取MARGIN后的X结构相符</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&gt; A &lt;- array(<span class="number">1</span>:<span class="number">24</span>, dim = <span class="number">4</span>:<span class="number">2</span>)</span><br><span class="line">&gt; median &lt;- apply(A, <span class="number">1</span>:<span class="number">2</span>, median)</span><br><span class="line">&gt; A</span><br><span class="line">, , <span class="number">1</span></span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">5</span>    <span class="number">9</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">6</span>   <span class="number">10</span></span><br><span class="line">[<span class="number">3</span>,]    <span class="number">3</span>    <span class="number">7</span>   <span class="number">11</span></span><br><span class="line">[<span class="number">4</span>,]    <span class="number">4</span>    <span class="number">8</span>   <span class="number">12</span></span><br><span class="line">, , <span class="number">2</span></span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>,]   <span class="number">13</span>   <span class="number">17</span>   <span class="number">21</span></span><br><span class="line">[<span class="number">2</span>,]   <span class="number">14</span>   <span class="number">18</span>   <span class="number">22</span></span><br><span class="line">[<span class="number">3</span>,]   <span class="number">15</span>   <span class="number">19</span>   <span class="number">23</span></span><br><span class="line">[<span class="number">4</span>,]   <span class="number">16</span>   <span class="number">20</span>   <span class="number">24</span></span><br><span class="line">&gt; median</span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">7</span>   <span class="number">11</span>   <span class="number">15</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">8</span>   <span class="number">12</span>   <span class="number">16</span></span><br><span class="line">[<span class="number">3</span>,]    <span class="number">9</span>   <span class="number">13</span>   <span class="number">17</span></span><br><span class="line">[<span class="number">4</span>,]   <span class="number">10</span>   <span class="number">14</span>   <span class="number">18</span></span><br><span class="line"></span><br><span class="line">&gt; sweep(A, <span class="number">1</span>:<span class="number">2</span>, median)</span><br><span class="line">, , <span class="number">1</span></span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>,]   -<span class="number">6</span>   -<span class="number">6</span>   -<span class="number">6</span></span><br><span class="line">[<span class="number">2</span>,]   -<span class="number">6</span>   -<span class="number">6</span>   -<span class="number">6</span></span><br><span class="line">[<span class="number">3</span>,]   -<span class="number">6</span>   -<span class="number">6</span>   -<span class="number">6</span></span><br><span class="line">[<span class="number">4</span>,]   -<span class="number">6</span>   -<span class="number">6</span>   -<span class="number">6</span></span><br><span class="line">, , <span class="number">2</span></span><br><span class="line">     [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span><br><span class="line">[<span class="number">1</span>,]    <span class="number">6</span>    <span class="number">6</span>    <span class="number">6</span></span><br><span class="line">[<span class="number">2</span>,]    <span class="number">6</span>    <span class="number">6</span>    <span class="number">6</span></span><br><span class="line">[<span class="number">3</span>,]    <span class="number">6</span>    <span class="number">6</span>    <span class="number">6</span></span><br><span class="line">[<span class="number">4</span>,]    <span class="number">6</span>    <span class="number">6</span>    <span class="number">6</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="replicate"><a href="#replicate" class="headerlink" title="replicate"></a>replicate</h4><figure class="highlight r"><figcaption><span>replicate-函数定义：rep能把输入参数重复数次，replicate则能调用表达式数次</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">replicate(n, expr, simplify = <span class="string">"array"</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>参数列表：</strong><br>n: 调用的次数<br>expr：调用的表达式</p>
+</blockquote>
+<span class="label info"><b>举例阐释</b></span>
+<figure class="highlight r"><figcaption><span>eg-建立一个函数，模拟扔两个骰子的点数之和，然后重复运行10次</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; game &lt;- <span class="keyword">function</span>() &#123;</span><br><span class="line">+   n &lt;- sample(<span class="number">1</span>:<span class="number">6</span>,<span class="number">2</span>,replace=<span class="literal">T</span>)</span><br><span class="line">+   <span class="keyword">return</span>(sum(n))</span><br><span class="line">+ &#125;</span><br><span class="line">&gt; replicate(n=<span class="number">10</span>, game())</span><br><span class="line"> [<span class="number">1</span>]  <span class="number">6</span>  <span class="number">6</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">7</span>  <span class="number">7</span> <span class="number">11</span>  <span class="number">8</span>  <span class="number">7</span>  <span class="number">9</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="aggregate"><a href="#aggregate" class="headerlink" title="aggregate"></a>aggregate</h4><figure class="highlight r"><figcaption><span>aggregate-函数定义：可按要求把数据分组，然后对分组后的数据进行各种操作</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aggregate(x, by, FUN, <span class="keyword">...</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>参数列表：</strong><br>x: 一种R数据结构，通常为数据框<br>by：分组索引，必须为list格式<br>FUN：要使用的函数</p>
+</blockquote>
+<span class="label info"><b>举例阐释</b></span>
+<figure class="highlight r"><figcaption><span>eg-按性别分组查看年龄和身高的均值</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; data &lt;- data.frame(name=c(<span class="string">"张三"</span>,<span class="string">"李四"</span>,<span class="string">"王五"</span>,<span class="string">"赵六"</span>),</span><br><span class="line">+              sex=c(<span class="string">"M"</span>,<span class="string">"M"</span>,<span class="string">"F"</span>,<span class="string">"F"</span>), age=c(<span class="number">20</span>,<span class="number">40</span>,<span class="number">22</span>,<span class="number">30</span>),</span><br><span class="line">+              height=c(<span class="number">166</span>,<span class="number">170</span>,<span class="number">150</span>,<span class="number">155</span>))</span><br><span class="line">&gt; data</span><br><span class="line">  name sex age height</span><br><span class="line"><span class="number">1</span> 张三   M  <span class="number">20</span>    <span class="number">166</span></span><br><span class="line"><span class="number">2</span> 李四   M  <span class="number">40</span>    <span class="number">170</span></span><br><span class="line"><span class="number">3</span> 王五   <span class="literal">F</span>  <span class="number">22</span>    <span class="number">150</span></span><br><span class="line"><span class="number">4</span> 赵六   <span class="literal">F</span>  <span class="number">30</span>    <span class="number">155</span></span><br><span class="line"></span><br><span class="line">&gt; aggregate(data[,<span class="number">3</span>:<span class="number">4</span>], by=list(data$sex), mean)</span><br><span class="line">  Group.1 age height</span><br><span class="line"><span class="number">1</span>       <span class="literal">F</span>  <span class="number">26</span>  <span class="number">152.5</span></span><br><span class="line"><span class="number">2</span>       M  <span class="number">30</span>  <span class="number">168.0</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<hr>
+<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><blockquote>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://www.cnblogs.com/aquastone/p/r-apply.html" target="_blank" rel="noopener">R语言apply函数族笔记</a></li>
+<li><a href="http://blog.fens.me/r-apply/" target="_blank" rel="noopener">掌握R语言中的apply函数族</a></li>
+<li><a href="https://feng.li/" target="_blank" rel="noopener">Dr. Feng Li-Personal Site</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+    
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/03/15/2018-03-15-数据操作-apply函数族/">数据操作-apply函数族</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 郝建锋 的个人博客">郝建锋</a></p>
+  <p><span>发布时间:</span>2018年03月15日 - 12:03</p>
+  <p><span>最后更新:</span>2018年03月17日 - 10:03</p>
+  <p><span>原始链接:</span><a href="/2018/03/15/2018-03-15-数据操作-apply函数族/" title="数据操作-apply函数族">https://divinerhjf.github.io/2018/03/15/2018-03-15-数据操作-apply函数族/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://divinerhjf.github.io/2018/03/15/2018-03-15-数据操作-apply函数族/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+  
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="郝建锋 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="郝建锋 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/R/" rel="tag"><i class="fa fa-tag"></i> R</a>
+          
+            <a href="/tags/apply/" rel="tag"><i class="fa fa-tag"></i> apply</a>
+          
+            <a href="/tags/数据操作/" rel="tag"><i class="fa fa-tag"></i> 数据操作</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/11/2018-03-11-回归分析系列3-简单线性回归/" rel="next" title="回归分析系列3-简单线性回归">
+                <i class="fa fa-chevron-left"></i> 回归分析系列3-简单线性回归
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/22/2018-03-22-数据可视化-formattable包/" rel="prev" title="数据可视化-formattable包">
+                数据可视化-formattable包 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/" class="site-author-image" rel="start" style="border:none">
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="郝建锋" />
+            </a>
+            
+              <p class="site-author-name" itemprop="name">郝建锋</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DivinerHJF" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.kaggle.com/haojianfeng" target="_blank" title="Kaggle">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Kaggle</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.linkedin.com/in/%E5%BB%BA%E9%94%8B-%E9%83%9D-ba3826133/" title="领英" target="_blank" rel="external nofollow">领英</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://konelane.github.io/" title="He核" target="_blank" rel="external nofollow">He核</a>
+                  </li>
+                
+              </ul>
+          <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("01/21/2018 00:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+            </div>
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为何要用apply？"><span class="nav-number">1.</span> <span class="nav-text">为何要用apply？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法详解"><span class="nav-number">2.</span> <span class="nav-text">语法详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#apply"><span class="nav-number">2.1.</span> <span class="nav-text">apply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tapply"><span class="nav-number">2.2.</span> <span class="nav-text">tapply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lapply"><span class="nav-number">2.3.</span> <span class="nav-text">lapply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rapply"><span class="nav-number">2.4.</span> <span class="nav-text">rapply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sapply"><span class="nav-number">2.5.</span> <span class="nav-text">sapply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vapply"><span class="nav-number">2.6.</span> <span class="nav-text">vapply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mapply"><span class="nav-number">2.7.</span> <span class="nav-text">mapply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eapply"><span class="nav-number">2.8.</span> <span class="nav-text">eapply</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用及拓展"><span class="nav-number">3.</span> <span class="nav-text">应用及拓展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用展示"><span class="nav-number">3.1.</span> <span class="nav-text">应用展示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关函数"><span class="nav-number">3.2.</span> <span class="nav-text">相关函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#by"><span class="nav-number">3.2.1.</span> <span class="nav-text">by</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#outer"><span class="nav-number">3.2.2.</span> <span class="nav-text">outer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sweep"><span class="nav-number">3.2.3.</span> <span class="nav-text">sweep</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#replicate"><span class="nav-number">3.2.4.</span> <span class="nav-text">replicate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#aggregate"><span class="nav-number">3.2.5.</span> <span class="nav-text">aggregate</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#致谢"><span class="nav-number">4.</span> <span class="nav-text">致谢</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文章"><span class="nav-number">4.1.</span> <span class="nav-text">参考文章</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 页脚地球 -->
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- 闲聊吧 -->
+
+  
+  
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Diviner</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+<span 
+  id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共30.9k字</span>
+</div>
+
+<div class="weixin-box">
+  <div class="weixin-menu">
+    <div class="weixin-hover">
+      <div class="weixin-description">欢迎订阅！</div>
+    </div>
+  </div>
+</div>
+        
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=65039272";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+    
+
+    
+
+
+    
+
+
+    <!-- bdshare BEGIN -->
+    <a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=e3bd58f2-b7ba-49b3-b590-25694389ee62&style=5&fs=2&bgcolor=Green"></script>
+    <!-- bdshare END -->
+
+  </div>
+  
+  <!-- DaoVoice留言板 BEGIN -->
+   <script>
+    daovoice('init', {
+      app_id: "07960529",
+      user_id: "NO_89757", // 必填: 该用户在您系统上的唯一ID
+      email: "daovoice@example.com", // 选填:  该用户在您系统上的主邮箱
+      name: "道客船长", // 选填: 用户名
+      signed_up: 1449821660 // 选填: 用户的注册时间，用Unix时间戳表示
+    });
+    daovoice('update');
+
+    daovoice('init', {
+      app_id: "07960529"
+    });
+    daovoice('update');
+  </script>
+  <!-- DaoVoice留言板 END -->
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'hgEcXnOfmL8iDWRYOEjtEGoa-gzGzoHsz',
+        appKey: 'qjVrCpos1yUadkalgX3XhAxF',
+        placeholder: '无需注册，畅所欲言',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("hgEcXnOfmL8iDWRYOEjtEGoa-gzGzoHsz", "qjVrCpos1yUadkalgX3XhAxF");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

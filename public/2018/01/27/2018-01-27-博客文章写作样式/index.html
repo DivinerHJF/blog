@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/bird.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bird.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bird.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/bird.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Markdown,Hexo," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Diviner's BLOG" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="学习了新知识，疏于记录便会淡忘，要用到时方悔当初；纸本与现有平台有其局限性，对于技术文档的展示有颇多限制，个人博客不失为一个好的选择——源于记录，善于书页。">
+<meta name="keywords" content="Markdown,Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客文章写作样式">
+<meta property="og:url" content="https://divinerhjf.github.io/2018/01/27/2018-01-27-博客文章写作样式/index.html">
+<meta property="og:site_name" content="Diviner&#39;s BLOG">
+<meta property="og:description" content="学习了新知识，疏于记录便会淡忘，要用到时方悔当初；纸本与现有平台有其局限性，对于技术文档的展示有颇多限制，个人博客不失为一个好的选择——源于记录，善于书页。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p31gihke0.bkt.clouddn.com/书页.jpg">
+<meta property="og:image" content="http://p31gihke0.bkt.clouddn.com/网易云音乐.png">
+<meta property="og:updated_time" content="2018-05-23T10:32:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="博客文章写作样式">
+<meta name="twitter:description" content="学习了新知识，疏于记录便会淡忘，要用到时方悔当初；纸本与现有平台有其局限性，对于技术文档的展示有颇多限制，个人博客不失为一个好的选择——源于记录，善于书页。">
+<meta name="twitter:image" content="http://p31gihke0.bkt.clouddn.com/书页.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"perspectiveLeftIn","post_header":"fadeIn","post_body":"fadeIn","coll_header":"perspectiveLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索……","hits_empty":"我们没有找到: ${query}","hits_stats":"${hits} 找到结果共花费 ${time} 毫秒"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://divinerhjf.github.io/2018/01/27/2018-01-27-博客文章写作样式/"/>
+
+
+
+
+
+  <title>博客文章写作样式 | Diviner's BLOG</title>
+  
+
+
+
+
+
+
+
+
+
+
+  <!-- DaoVoice留言板 -->
+  <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/07960529.js","daovoice")</script>
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+  <a href="https://github.com/DivinerHJF" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Diviner's BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Live well, love lots, and laugh often.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/categories/碎碎念" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br />
+            
+            碎碎念
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://divinerhjf.github.io/2018/01/27/2018-01-27-博客文章写作样式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郝建锋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Diviner's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">博客文章写作样式</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-27T00:51:29+08:00">
+                2018-01-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/排版/" itemprop="url" rel="index">
+                    <span itemprop="name">排版</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/27/2018-01-27-博客文章写作样式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/01/27/2018-01-27-博客文章写作样式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/27/2018-01-27-博客文章写作样式/" class="leancloud_visitors" data-flag-title="博客文章写作样式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.3k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center><i>学习了新知识，疏于记录便会淡忘，要用到时方悔当初；<br>纸本与现有平台有其局限性，对于技术文档的展示有颇多限制，个人博客不失为一个好的选择——源于记录，善于书页。</i></center>
+
+<p><br><img src="http://p31gihke0.bkt.clouddn.com/书页.jpg" alt="书页.jpg"><br><a id="more"></a></p>
+<!--网易云音乐链接-->
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="320" src="//music.163.com/outchain/player?type=0&id=2058497430&auto=0&height=430"></iframe>
+
+
+<h2 id="使用文章模板"><a href="#使用文章模板" class="headerlink" title="使用文章模板"></a>使用文章模板</h2><h3 id="创建新文章"><a href="#创建新文章" class="headerlink" title="创建新文章"></a>创建新文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<p>有关创建新文章的命令以及默认文件名等说明在<a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">官方文档</a>里说的已经很清楚了，在此不再赘述。</p>
+<h3 id="文章模板文件"><a href="#文章模板文件" class="headerlink" title="文章模板文件"></a>文章模板文件</h3><h4 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a>Front-matter</h4><p>关于文件最上方的参数，参见 Hexo 官方文档的 <a href="https://hexo.io/docs/front-matter.html" target="_blank" rel="noopener">Front-matter</a> 和 <a href="https://hexo.io/zh-cn/docs/variables.html#%E9%A1%B5%E9%9D%A2%E5%8F%98%E9%87%8F" target="_blank" rel="noopener">页面变量</a>，以下是本人常用的 ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">/* ！！！！！！！！！！</span><br><span class="line">** 每一项的 : 后面均有一个空格</span><br><span class="line">** 且 : 为英文符号</span><br><span class="line">** ！！！！！！！！！！</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">title:</span><br><span class="line">/* 文章标题，可以为中文 */</span><br><span class="line"></span><br><span class="line">date:</span><br><span class="line">/* 建立日期，如果自己手动添加，请按固定格式</span><br><span class="line">** 就算不写，页面每篇文章顶部的发表于……也能显示</span><br><span class="line">** 只要在主题配置文件中，配置了 created_at 就行</span><br><span class="line">** 那为什么还要自己加上？</span><br><span class="line">** 自定义文章发布的时间</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">updated:</span><br><span class="line">/* 更新日期，其它与上面的建立日期类似</span><br><span class="line">** 不过在页面每篇文章顶部，是更新于……</span><br><span class="line">** 在主题配置文件中，是 updated_at</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">categories:</span><br><span class="line">/* 分类，支持多级，比如：</span><br><span class="line">- technology</span><br><span class="line">- computer</span><br><span class="line">- computer-aided-art</span><br><span class="line">则为technology/computer/computer-aided-art</span><br><span class="line">（不适用于 layout: page）</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">tags:</span><br><span class="line">/* 标签</span><br><span class="line">** 多个可以这样写[标签1,标签2,标签3]</span><br><span class="line">** （不适用于 layout: page）</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">description:</span><br><span class="line">/* 文章的描述，在每篇文章标题下方显示</span><br><span class="line">** 并且作为网页的 description 元数据</span><br><span class="line">** 如果不写，则自动取 &lt;!-- more --&gt;</span><br><span class="line">** 之前的文字作为网页的 description 元数据</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">keywords:</span><br><span class="line">/* 关键字，并且作为网页的 keywords 元数据</span><br><span class="line">** 如果不写，则自动取 tags 里的项</span><br><span class="line">** 作为网页的 keywords 元数据</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">comments:</span><br><span class="line">/* 是否开启评论</span><br><span class="line">** 默认值是 true</span><br><span class="line">** 要关闭写 false</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">layout:</span><br><span class="line">/* 页面布局，默认值是 post，默认值可以在</span><br><span class="line">** 站点配置文件中修改 default_layout</span><br><span class="line">** 另：404 页面可能用到，将其值改为 false</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">sticky:</span><br><span class="line">/* 文章置顶</span><br><span class="line">** 此项只有参考教程配置好，否则请勿添加！</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">password:</span><br><span class="line">/* 文章密码，此项只有参考教程：</span><br><span class="line">** http://shenzekun.cn/hexo的next主题个性化配置教程.html</span><br><span class="line">** 第 24 节，配置好，否则请勿添加！</span><br><span class="line">** 发现还是有 bug 的，就是右键在新标签中打开</span><br><span class="line">** 然后无论是否输入密码，都能看到内容</span><br><span class="line">*/</span><br></pre></td></tr></table></figure></p>
+<h4 id="我的模板文件"><a href="#我的模板文件" class="headerlink" title="我的模板文件"></a>我的模板文件</h4><figure class="highlight md"><figcaption><span>文件位置：~/blog/scaffolds/post.md</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">categories: </span><br><span class="line">tags: </span><br><span class="line">copyright: </span><br><span class="line">password: </span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">&lt;center&gt;**&lt;/center&gt;</span><br><span class="line"></span><br><span class="line">&lt;br&gt;![](http://p31gihke0.bkt.clouddn.com/)</span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line"><span class="section">## </span></span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line"><span class="section">## </span></span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line"><span class="section">##</span></span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line"><span class="section">## 致谢</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; ### 参考文章</span></span><br><span class="line"><span class="quote">&gt; * []()</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>&lt;!--more--&gt;</code>以上属于文章的摘要（封面），会在主页显示出来，可以看到本人文章的封面一般是一段居中倾斜文字配上一张图。</li>
+<li>文章内标题请从二级标题（##）开始！<div class="note warning no-icon"><p>Ps：此处虽然给了模板，但其实博客的写作很随性的，你可以自主搭配样式，怎么舒服怎么来，下面就来介绍一下该怎样写一篇博文以及如何增添样式来使文章逻辑分明，便于阅读与理解。（宝宝们放心，看懂了后写起来比Word省心多了）</p></div>
+
+</li>
+</ol>
+<hr>
+<h2 id="使用-Markdown"><a href="#使用-Markdown" class="headerlink" title="使用 Markdown"></a>使用 Markdown</h2><p>Markdown 是一种方便记忆、书写的纯文本标记语言，用户可以使用这些标记符号以最小的输入代价生成极富表现力的文档：它使用简单的符号标记不同的标题，分割不同的段落，<strong>粗体</strong> 或者 <em>斜体</em> 某些文字，我们可以使用它：</p>
+<blockquote>
+<ul>
+<li>整理知识，学习笔记</li>
+<li>发布日记，杂文，所见所想</li>
+<li>撰写发布技术文稿（代码支持）</li>
+<li>撰写发布学术论文（LaTeX 公式支持）</li>
+</ul>
+</blockquote>
+<p>它的优点在于：</p>
+<blockquote>
+<ul>
+<li>专注你的文字内容而不是排版样式</li>
+<li>可读，直观。适合所有人的写作语言</li>
+<li>轻松的导出 HTML、PDF 和本身的 .md 文件</li>
+<li>纯文本内容，兼容所有的文本编辑器与字处理软件</li>
+</ul>
+</blockquote>
+<h3 id="GFM-简明语法"><a href="#GFM-简明语法" class="headerlink" title="GFM 简明语法"></a>GFM 简明语法</h3><p>网络上关于Markdown的语法说明有很多，大家可以去网上随便找一篇读一读了解个大概。在不同平台上也衍生出了多样化的独具特色的Markdown语法，它们大同小异但也确实各有不同，下面的这篇文章简单介绍了Hexo下使用的MarkDown——Github的GFM的基本语法与标准：</p>
+<p><a href="http://suo.im/2Ch7H3" target="_blank" rel="noopener">HEXO下的Markdown语法(GFM)写博客</a></p>
+<h3 id="Markdown-高级语法"><a href="#Markdown-高级语法" class="headerlink" title="Markdown 高级语法"></a>Markdown 高级语法</h3><p>能用Markdown 做的事情还有很多，列表、代码块、图表这些都不是问题：</p>
+<ul>
+<li>制作一份待办事宜 [Todo 列表]</li>
+</ul>
+<ul>
+<li>[ ] 支持以 PDF 格式导出文稿</li>
+<li>[ ] 改进 Cmd 渲染算法，使用局部渲染技术提高渲染效率</li>
+<li>[x] 新增 Todo 列表功能</li>
+<li>[x] 修复 LaTex 公式渲染问题</li>
+<li>[x] 新增 LaTex 公式编号功能</li>
+</ul>
+<ul>
+<li><p>高亮一段代码</p>
+<figure class="highlight python"><figcaption><span>Python 源码展示</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@requires_authorization</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># A comment</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'hello world'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>绘制表格</p>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align:right">价格</th>
+<th style="text-align:center">数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算机</td>
+<td style="text-align:right">\$1600</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td>手机</td>
+<td style="text-align:right">\$12</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td>管线</td>
+<td style="text-align:right">\$1</td>
+<td style="text-align:center">234</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note info"><p>更多更详细的Markdown语法使用教程见：
+[Cmd Markdown 语法手册](http://suo.im/3Q8rcF)</p></div>
+
+<h3 id="与其他语言相兼容"><a href="#与其他语言相兼容" class="headerlink" title="与其他语言相兼容"></a>与其他语言相兼容</h3><p>在 Markdown 书写的过程中，不仅可以使用简明的 Markdown 语法，还可以通过使用 LaTex 语法来书写数学公式，使用HTML 语法来调整布局与颜色等。但是本人在实践中发现，GFM 对 HTML 语法的兼容性非常好，因为最终它就是转为 html 格式发布的，但是对于 LaTex 语法的书写发布渲染有时会出现一些奇怪的问题，建议如果写学术文章还是选择更加合适的 Markdown 平台，毕竟 GFM 在此只是用来写博客的。</p>
+<h4 id="LaTex-语法"><a href="#LaTex-语法" class="headerlink" title="LaTex 语法"></a>LaTex 语法</h4><p>在<code>Markdown</code>语体下使用<code>LaTex</code>语法一般来将目的很单纯，就是美化数学公式的书写，主要有两种用法。</p>
+<ul>
+<li>行内公式书写<figure class="highlight c"><figcaption><span>LaTex 源码展示-行内公式</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$E=mc^<span class="number">2</span>$</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>质能守恒方程可以用一个很简洁的方程式 $E=mc^2$ 来表达。</p>
+<ul>
+<li>行间公式书写：<figure class="highlight c"><figcaption><span>LaTex 源码展示-行间公式</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$\sum_&#123;i=<span class="number">1</span>&#125;^n a_i=<span class="number">0</span>$$</span><br><span class="line"></span><br><span class="line">$$f(x_1,x_x,\ldots,x_n) = x_1^<span class="number">2</span> + x_2^<span class="number">2</span> + \cdots + x_n^<span class="number">2</span> $$</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<script type="math/tex; mode=display">\sum_{i=1}^n a_i=0</script><script type="math/tex; mode=display">f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2</script><div class="note success"><p>什么？不熟悉 LaTex 语法，不用害怕，试试这个<br>[在线LaTex公式编辑器](http://www.codecogs.com/latex/eqneditor.php)</p></div>
+
+<h4 id="HTML-与-CSS-语法"><a href="#HTML-与-CSS-语法" class="headerlink" title="HTML 与 CSS 语法"></a>HTML 与 CSS 语法</h4><p>熟悉语法的同志们可以尽情发挥，如果你不熟悉也没关系，记住以下这几种常用的也够用了。</p>
+<ul>
+<li><p>分隔线和空行</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/* 分隔线 */</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span> /&gt;</span></span><br><span class="line">/* 注意事项 6：在XHTML 中，<span class="tag">&lt;<span class="name">hr</span>&gt;</span> 必须被正确地关闭，比如 <span class="tag">&lt;<span class="name">hr</span> /&gt;</span> */</span><br><span class="line">/* 空行 */</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">/* 注意事项同上 */</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>居中和对齐方式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/* 居中 */</span><br><span class="line"><span class="tag">&lt;<span class="name">center</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br><span class="line">/* 右对齐 */</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"text-align:right"</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字体大小和颜色</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"#xxxxxx"</span> <span class="attr">size</span>=<span class="string">"number"</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line">/* 详细请查看 http://www.w3school.com.cn/tags/tag_font.asp */</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<center><font color="red" size="number">例：我是居中的小红</font></center>
+
+<hr>
+<h2 id="插入音乐和视频"><a href="#插入音乐和视频" class="headerlink" title="插入音乐和视频"></a>插入音乐和视频</h2><h3 id="音乐"><a href="#音乐" class="headerlink" title="音乐"></a>音乐</h3><p>可以直接用 HTML 的标签，写法如下：<br><figure class="highlight html"><figcaption><span>嵌入歌曲标签</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">src</span>=<span class="string">"https://什么什么什么.mp3"</span> <span class="attr">style</span>=<span class="string">"max-height :100%; max-width: 100%; display: block; margin-left: auto; margin-right: auto;"</span> <span class="attr">controls</span>=<span class="string">"controls"</span> <span class="attr">loop</span>=<span class="string">"loop"</span> <span class="attr">preload</span>=<span class="string">"meta"</span>&gt;</span>Your browser does not support the audio tag.<span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>如果想直接用已有平台上的歌，事情也很好办，可以将歌曲外链嵌入页面，以云村为例：<br>打开<a href="https://music.163.com/" target="_blank" rel="noopener">网易云音乐</a>找到自己喜欢的音乐或个点，点击生成外链：<br><img src="http://p31gihke0.bkt.clouddn.com/网易云音乐.png" alt="网易云音乐"><br>然后根据自己的需要，加在<code>blog/theme/next/layout/_layout.swig</code>中或<code>blog/theme/next/layout/_macro/sidebar.swig</code>中，当然也可以直接放在文章中，比如用以下外链生成的效果见本文顶部。<br><figure class="highlight html"><figcaption><span>代码清单-云村歌单外链</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--网易云音乐链接--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">frameborder</span>=<span class="string">"no"</span> <span class="attr">border</span>=<span class="string">"0"</span> <span class="attr">marginwidth</span>=<span class="string">"0"</span> <span class="attr">marginheight</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">330</span> <span class="attr">height</span>=<span class="string">320</span> <span class="attr">src</span>=<span class="string">"//music.163.com/outchain/player?type=0&amp;id=2058497430&amp;auto=0&amp;height=430"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>如果你还想要加上歌词就需要安装一个插件<code>Aplayer</code>，在<a href="http://suo.im/2sHCA0" target="_blank" rel="noopener">这篇文章</a>里有详细说明。由于我没有这种需求就不再赘述了。</p>
+<h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><p>一样的，可以直接用 HTML 的标签，写法如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">poster</span>=<span class="string">"https://封面图.jpg"</span> <span class="attr">src</span>=<span class="string">"https://什么什么什么.mp4"</span> <span class="attr">style</span>=<span class="string">"max-height :100%; max-width: 100%; display: block; margin-left: auto; margin-right: auto;"</span> <span class="attr">controls</span>=<span class="string">"controls"</span> <span class="attr">loop</span>=<span class="string">"loop"</span> <span class="attr">preload</span>=<span class="string">"meta"</span>&gt;</span>Your browser does not support the video tag.<span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>当然还可以用插件完成更多的功能，上面那篇文章里也有介绍，想更进一步的可以去看看。</p>
+<hr>
+<h2 id="使用写作样式"><a href="#使用写作样式" class="headerlink" title="使用写作样式"></a>使用写作样式</h2><p>适当的使用下面的写作样式可以使文章的可读性增强，但读者不要为了追求华丽而使用过多的样式，那样反而会适得其反，博主认为使用样式应该本着<code>少即是多、重点突出、一图胜千言</code>的思想去使用，致力于增加文章的可读性。毕竟，<code>着重于内容的写作，让思想更好得展现</code>是我们最初的也是最终的愿望。这和我们用 Markdown 写文章是一样的道理，用 Markdown 而不是直接写 HTML 代码，就是为了将更多时间花在文字上。</p>
+<h3 id="主题自带样式"><a href="#主题自带样式" class="headerlink" title="主题自带样式"></a>主题自带样式</h3><h4 id="FontAwesome"><a href="#FontAwesome" class="headerlink" title="FontAwesome"></a>FontAwesome</h4><p>自己配置过主题的博主们对<a href="http://fontawesome.io/icons/" target="_blank" rel="noopener">FontAwesome</a>这个网站应该都不会陌生，此网站类似于一个图标库，我们可以通过直接在文章中使用 html 和 css 代码来调用网站上的图标，下面给出一些简单的使用例子：</p>
+<figure class="highlight html"><figcaption><span>调用图表示例代码</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-apple"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>   来个小苹果</span><br><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-apple fa-2x"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>   变大的苹果</span><br><span class="line"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-apple fa-spin fa-2x fa-fw"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>   会转的苹果</span><br></pre></td></tr></table></figure>
+<p><i class="fa fa-apple">&lt;/i&gt;   来个小苹果<br><i class="fa fa-apple fa-2x"></i>   变大的苹果<br><i class="fa fa-apple fa-spin fa-2x fa-fw"></i>   会转的苹果</i></p>
+<div class="note info"><p>更多有趣调用请查看官网的[使用示例](http://fontawesome.io/examples/)</p></div>
+
+<h4 id="代码块高亮"><a href="#代码块高亮" class="headerlink" title="代码块高亮"></a>代码块高亮</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">​```language title url link-text</span><br><span class="line">你的代码</span><br><span class="line">​```</span><br></pre></td></tr></table></figure>
+<ul>
+<li>language：代码语言的名称，用来设置代码块颜色高亮，非必须；</li>
+<li>title：顶部左边的说明，非必须；</li>
+<li>url：顶部右边的超链接地址，非必须；</li>
+<li>link-text：超链接的名称，非必须。</li>
+</ul>
+<p>这 4 项应该是根据空格来分隔，如果你想写后面两个，但不想写前面两个，那么就必须加[]了，要这样写：<code>[] [] [url] [link text]</code>。</p>
+<p>代码块高亮的模式可以在<code>主题配置文件</code>中设置：<br><figure class="highlight js"><figcaption><span>文件位置：~/blog/themes/next/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Code Highlight theme</span><br><span class="line"># Available value:</span><br><span class="line">#    normal | night | night eighties | night blue | night bright</span><br><span class="line"># https://github.com/chriskempson/tomorrow-theme</span><br><span class="line">highlight_theme: normal</span><br></pre></td></tr></table></figure></p>
+<p>要颜色正确高亮，可以在<code>站点配置文件</code>中设置自动高亮：<br><figure class="highlight diff"><figcaption><span>文件位置：~/blog/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">highlight:</span><br><span class="line">  enable: true</span><br><span class="line">  line_number: true</span><br><span class="line"># 代码自动高亮</span><br><span class="line"><span class="deletion">-  auto_detect: false</span></span><br><span class="line"><span class="addition">+  auto_detect: true</span></span><br></pre></td></tr></table></figure></p>
+<p>红色<code>-</code>和绿色<code>+</code>的样式也是一种语言，叫diff，所以你只需在 [language] 写<code>diff</code>，然后在相应代码前面加上<code>-</code>和<code>+</code>就行了。不过默认的<code>-</code>是绿色，<code>+</code>是红色，与 Github 上相反，你可以自己更改，此处本人使用了博主<a href="https://reuixiy.github.io/" target="_blank" rel="noopener">reuixiy</a>的设置：<br><figure class="highlight c"><figcaption><span>文件位置：~/blog/themes/next/source/css/_custom/custom.styl</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文章```代码块diff样式</span></span><br><span class="line">pre .addition &#123;</span><br><span class="line">    background: #e6ffed;</span><br><span class="line">&#125;</span><br><span class="line">pre .deletion &#123;</span><br><span class="line">    background: #ffeef0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文章```代码块顶部样式</span></span><br><span class="line">.highlight figcaption &#123;</span><br><span class="line">    margin: <span class="number">0</span>em;</span><br><span class="line">    padding: <span class="number">0.5</span>em;</span><br><span class="line">    background: <span class="meta">#eee;</span></span><br><span class="line">    border-bottom: <span class="number">1</span>px solid #e9e9e9;</span><br><span class="line">&#125;</span><br><span class="line">.highlight figcaption a &#123;</span><br><span class="line">    color: rgb(<span class="number">80</span>, <span class="number">115</span>, <span class="number">184</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>.</p>
+<div class="note info"><p>关于代码块高亮的高级个性化，可以看 zhuzhuxia 的博文:
+[HEXO下的语法高亮拓展修改](http://suo.im/qRryw)</p></div>
+
+
+<h4 id="标签的使用"><a href="#标签的使用" class="headerlink" title="标签的使用"></a>标签的使用</h4><p>「<a href="http://theme-next.iissnan.com/tag-plugins.html" target="_blank" rel="noopener">标签</a>」(Tag Plugin) 是 Hexo 提供的一种快速生成特定内容的方式。 例如，在标准 Markdown 语法中，Hexo 无法指定图片的大小。这种情景即可使用标签来解决。 Hexo 内置来许多标签来帮助写作者可以更快的书写， <a href="https://hexo.io/docs/tag-plugins.html" target="_blank" rel="noopener">完整的标签列表</a> 可以参考 Hexo 官网。 另外，Hexo 也开放来接口给主题，使主题有可能提供给写作者更简便的写作方法。<br><figure class="highlight html"><figcaption><span>示例1 -文本居中标签使用</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 其中 class="blockquote-center" 是必须的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">class</span>=<span class="string">"blockquote-center"</span>&gt;</span>blah blah blah<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 标签 方式，要求版本在0.4.5或以上 --&gt;</span></span><br><span class="line">&#123;% centerquote %&#125;blah blah blah&#123;% endcenterquote %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 标签别名 --&gt;</span></span><br><span class="line">&#123;% cq %&#125; blah blah blah &#123;% endcq %&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote class="blockquote-center"><p>Every interaction is both precious and an opportunity to delight.</p>
+</blockquote>
+<figure class="highlight html"><figcaption><span>示例2 -书中名言引用标签</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% blockquote David Levithan, Wide Awake %&#125;</span><br><span class="line">Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</span><br><span class="line">&#123;% endblockquote %&#125;</span><br></pre></td></tr></table></figure>
+<p>效果示例：<br><blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
+<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote></p>
+<h4 id="note-标签"><a href="#note-标签" class="headerlink" title="note 标签"></a>note 标签</h4><p>要使用此标签首先要在<code>主题配置文件</code>中修改以下配置：<br><figure class="highlight js"><figcaption><span>文件位置：~/blog/themes/next/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Note tag (bs-callout).</span><br><span class="line">note:</span><br><span class="line">  # 风格</span><br><span class="line">  style: flat</span><br><span class="line">  # 要不要图标</span><br><span class="line">  icons: <span class="literal">true</span></span><br><span class="line">  # 圆角矩形</span><br><span class="line">  border_radius: <span class="number">3</span></span><br><span class="line">  light_bg_offset: <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p>下面展示 note 标签的使用，这些标签本文在上文已多次使用：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"note info"</span>&gt;</span><span class="tag">&lt;<span class="name">p</span>&gt;</span>info<span class="tag">&lt;/<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<div class="note info"><p>info</p></div>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"note info no-icon"</span>&gt;</span><span class="tag">&lt;<span class="name">p</span>&gt;</span>关于 note 标签的更多形式可以查看[这个页面](https://github.com/iissnan/hexo-theme-next/pull/1697)，介绍多多，自行选用<span class="tag">&lt;/<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div class="note info no-icon"><p>关于 note 标签的更多形式可以查看[这个页面](https://github.com/iissnan/hexo-theme-next/pull/1697)，介绍多多，自行选用</p></div>
+
+
+<h4 id="label-标签"><a href="#label-标签" class="headerlink" title="label 标签"></a>label 标签</h4><p>首先在<code>主题配置文件</code>中修改配置如下：<br><figure class="highlight diff"><figcaption><span>文件位置：~/blog/themes/next/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Label tag.</span><br><span class="line"><span class="deletion">- label: false</span></span><br><span class="line"><span class="addition">+ label: true</span></span><br></pre></td></tr></table></figure></p>
+<p>效果如下（@ 前面的是<code>label</code>的名字，后面的是要显示的文字）：<br><span class="label default">default</span><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% label default@default %&#125;</span><br></pre></td></tr></table></figure></p>
+<span class="label primary">primary</span>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% label primary@primary %&#125;</span><br></pre></td></tr></table></figure>
+<span class="label success">success</span>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% label success@success %&#125;</span><br></pre></td></tr></table></figure>
+<span class="label info">info</span>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% label info@info %&#125;</span><br></pre></td></tr></table></figure>
+<span class="label warning">warning</span>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% label warning@warning %&#125;</span><br></pre></td></tr></table></figure>
+<span class="label danger">danger</span>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% label danger@danger %&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<div class="note warning"><p>目前此标签有个 bug，如果把它加在一段文字的段首，则会有点问题，详见 [issue](https://github.com/iissnan/hexo-theme-next/issues/2022) 页面。</p></div>
+
+
+<h4 id="tabs-标签"><a href="#tabs-标签" class="headerlink" title="tabs 标签"></a>tabs 标签</h4><p>老规矩，先改<code>主题配置文件</code>：<br><figure class="highlight js"><figcaption><span>文件位置：~/blog/themes/next/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Tabs tag.</span><br><span class="line">tabs:</span><br><span class="line">  enable: <span class="literal">true</span></span><br><span class="line">  transition:</span><br><span class="line">    tabs: <span class="literal">true</span></span><br><span class="line">    labels: <span class="literal">true</span></span><br><span class="line">  border_radius: <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p>先来个小示例：<br><figure class="highlight html"><figcaption><span>tans 标签示例</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% tabs First unique name %&#125;</span><br><span class="line"><span class="comment">&lt;!-- tab 我是孙行者--&gt;</span></span><br><span class="line">**我是真的！**</span><br><span class="line"><span class="comment">&lt;!-- endtab --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- tab 吾乃者行孙--&gt;</span></span><br><span class="line">**我才是真的！**</span><br><span class="line"><span class="comment">&lt;!-- endtab --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- tab 行者孙是也--&gt;</span></span><br><span class="line">**我真的是真的！**</span><br><span class="line"><span class="comment">&lt;!-- endtab --&gt;</span></span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure></p>
+<div class="tabs" id="first-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#first-unique-name-1">我是孙行者</a></li><li class="tab"><a href="#first-unique-name-2">吾乃者行孙</a></li><li class="tab"><a href="#first-unique-name-3">行者孙是也</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p><strong>我是真的！</strong></p>
+</div><div class="tab-pane" id="first-unique-name-2"><p><strong>我才是真的！</strong></p>
+</div><div class="tab-pane" id="first-unique-name-3"><p><strong>我真的是真的！</strong></p>
+</div></div></div>
+<div class="note info"><p>这个选项卡其实妙用无穷，下面这篇文章对此有诸多说明，推荐一看：
+[Hexo Theme Next Test](https://almostover.ru/2016-01/hexo-theme-next-test/)</p></div>
+
+
+<h4 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h4><figure class="highlight html"><figcaption><span>按钮示例源码</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% btn https://www.baidu.com, 点击下载百度, download fa-lg fa-fw %&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：<a class="btn" href="https://www.baidu.com" target="_blank" rel="noopener"><i class="fa fa-download fa-lg fa-fw"></i>点击下载百度</a></p>
+<p>关于按钮的更多使用也可以前往上面说到的<a href="https://almostover.ru/2016-01/hexo-theme-next-test/" target="_blank" rel="noopener">这篇文章</a>里去查看。</p>
+<h3 id="自定义样式"><a href="#自定义样式" class="headerlink" title="自定义样式"></a>自定义样式</h3><p>如果你曾经像我一样跟随那些大佬博主们折腾过自己的博客主题，那么你一定明白所谓自定义样式，就是将 CSS 代码加到<code>custom.styl</code>中，如果你和我一样对这方面一窍不通可以在<a href="http://www.divcss5.com/rumen/r3.shtml" target="_blank" rel="noopener">这里</a>了解了解 CSS 中id和class的知识。</p>
+<p>由于这方面我并不太了解就不多说什么了，推荐大家去看一个很少女心的博主<span class="label primary">千灵夙赋</span>的这篇文章：<a href="https://qianling.pw/style/#TOC%E6%95%B0%E5%AD%97%E5%9D%97" target="_blank" rel="noopener">外部样式表汇总</a></p>
+<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>刚建博客的前两天，看了好多博主的博客，感叹各位博主的创造力与审美，同时也偷偷模仿了几位博主的博客样式，虽说学的有些不伦不类，不过大概也不会有大的改动了，毕竟建博客的初衷是为了记录，版式的设计为的是营造舒心方便的创作环境。</p>
+<p>接下来就要认真考虑写什么、怎么写的问题，于是就有了本篇博文的诞生，由于以前有使用 Rmarkdown 的经历，所以学起来倒也省了许多气力，目前来看上面的写作样式已经足以让我尽情展现了，在此特别感谢无私整合资源的各位博主们，接下来的日子里就是真正输出内容的时候了，会涉及R和Python的学习心得以及自己做的数据报告，还会有Kaggle的大神代码解析或其他的一些有的没的，要不要考虑加个书单页和观影页嗯？<br>总之，明天又是美好的一天，加油！</p>
+<blockquote>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><a href="https://qianling.pw/style/#TOC%E6%95%B0%E5%AD%97%E5%9D%97" target="_blank" rel="noopener">外部样式表汇总</a></li>
+<li><a href="https://almostover.ru/2016-01/hexo-theme-next-test/" target="_blank" rel="noopener">Hexo Theme Next Test</a></li>
+<li><a href="http://suo.im/1sH1k7" target="_blank" rel="noopener">Markdown - 简单的世界</a></li>
+<li><a href="http://suo.im/3Q8rcF" target="_blank" rel="noopener">Cmd Markdown 语法手册</a></li>
+<li><a href="http://suo.im/qRryw" target="_blank" rel="noopener">HEXO下的语法高亮拓展修改</a></li>
+<li><a href="http://www.divcss5.com/rumen/r3.shtml" target="_blank" rel="noopener">CSS中的class与id区别及用法</a></li>
+<li><a href="http://suo.im/2Ch7H3" target="_blank" rel="noopener">HEXO下的Markdown语法(GFM)写博客</a></li>
+<li><a href="http://suo.im/2sHCA0" target="_blank" rel="noopener">打造个性超赞博客Hexo+NexT+GithubPages的超深度优化</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+    
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/01/27/2018-01-27-博客文章写作样式/">博客文章写作样式</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 郝建锋 的个人博客">郝建锋</a></p>
+  <p><span>发布时间:</span>2018年01月27日 - 00:01</p>
+  <p><span>最后更新:</span>2018年05月23日 - 18:05</p>
+  <p><span>原始链接:</span><a href="/2018/01/27/2018-01-27-博客文章写作样式/" title="博客文章写作样式">https://divinerhjf.github.io/2018/01/27/2018-01-27-博客文章写作样式/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://divinerhjf.github.io/2018/01/27/2018-01-27-博客文章写作样式/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+  
+</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="郝建锋 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="郝建锋 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Markdown/" rel="tag"><i class="fa fa-tag"></i> Markdown</a>
+          
+            <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/23/2018-01-23-Next个性化设置/" rel="next" title="Next 个性化设置">
+                <i class="fa fa-chevron-left"></i> Next 个性化设置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/10/2018-03-10-回归分析系列1-统计概念基础/" rel="prev" title="回归分析系列1-统计概念基础">
+                回归分析系列1-统计概念基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/" class="site-author-image" rel="start" style="border:none">
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="郝建锋" />
+            </a>
+            
+              <p class="site-author-name" itemprop="name">郝建锋</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DivinerHJF" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.kaggle.com/haojianfeng" target="_blank" title="Kaggle">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Kaggle</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.linkedin.com/in/%E5%BB%BA%E9%94%8B-%E9%83%9D-ba3826133/" title="领英" target="_blank" rel="external nofollow">领英</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://konelane.github.io/" title="He核" target="_blank" rel="external nofollow">He核</a>
+                  </li>
+                
+              </ul>
+          <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("01/21/2018 00:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+            </div>
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用文章模板"><span class="nav-number">1.</span> <span class="nav-text">使用文章模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建新文章"><span class="nav-number">1.1.</span> <span class="nav-text">创建新文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章模板文件"><span class="nav-number">1.2.</span> <span class="nav-text">文章模板文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Front-matter"><span class="nav-number">1.2.1.</span> <span class="nav-text">Front-matter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我的模板文件"><span class="nav-number">1.2.2.</span> <span class="nav-text">我的模板文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Markdown"><span class="nav-number">2.</span> <span class="nav-text">使用 Markdown</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GFM-简明语法"><span class="nav-number">2.1.</span> <span class="nav-text">GFM 简明语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown-高级语法"><span class="nav-number">2.2.</span> <span class="nav-text">Markdown 高级语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与其他语言相兼容"><span class="nav-number">2.3.</span> <span class="nav-text">与其他语言相兼容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LaTex-语法"><span class="nav-number">2.3.1.</span> <span class="nav-text">LaTex 语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML-与-CSS-语法"><span class="nav-number">2.3.2.</span> <span class="nav-text">HTML 与 CSS 语法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入音乐和视频"><span class="nav-number">3.</span> <span class="nav-text">插入音乐和视频</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#音乐"><span class="nav-number">3.1.</span> <span class="nav-text">音乐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视频"><span class="nav-number">3.2.</span> <span class="nav-text">视频</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用写作样式"><span class="nav-number">4.</span> <span class="nav-text">使用写作样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主题自带样式"><span class="nav-number">4.1.</span> <span class="nav-text">主题自带样式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FontAwesome"><span class="nav-number">4.1.1.</span> <span class="nav-text">FontAwesome</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码块高亮"><span class="nav-number">4.1.2.</span> <span class="nav-text">代码块高亮</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标签的使用"><span class="nav-number">4.1.3.</span> <span class="nav-text">标签的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#note-标签"><span class="nav-number">4.1.4.</span> <span class="nav-text">note 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#label-标签"><span class="nav-number">4.1.5.</span> <span class="nav-text">label 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tabs-标签"><span class="nav-number">4.1.6.</span> <span class="nav-text">tabs 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#按钮"><span class="nav-number">4.1.7.</span> <span class="nav-text">按钮</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义样式"><span class="nav-number">4.2.</span> <span class="nav-text">自定义样式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#致谢"><span class="nav-number">5.</span> <span class="nav-text">致谢</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文章"><span class="nav-number">5.1.</span> <span class="nav-text">参考文章</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 页脚地球 -->
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- 闲聊吧 -->
+
+  
+  
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Diviner</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+<span 
+  id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共30.9k字</span>
+</div>
+
+<div class="weixin-box">
+  <div class="weixin-menu">
+    <div class="weixin-hover">
+      <div class="weixin-description">欢迎订阅！</div>
+    </div>
+  </div>
+</div>
+        
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=65039272";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+    
+
+    
+
+
+    
+
+
+    <!-- bdshare BEGIN -->
+    <a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=e3bd58f2-b7ba-49b3-b590-25694389ee62&style=5&fs=2&bgcolor=Green"></script>
+    <!-- bdshare END -->
+
+  </div>
+  
+  <!-- DaoVoice留言板 BEGIN -->
+   <script>
+    daovoice('init', {
+      app_id: "07960529",
+      user_id: "NO_89757", // 必填: 该用户在您系统上的唯一ID
+      email: "daovoice@example.com", // 选填:  该用户在您系统上的主邮箱
+      name: "道客船长", // 选填: 用户名
+      signed_up: 1449821660 // 选填: 用户的注册时间，用Unix时间戳表示
+    });
+    daovoice('update');
+
+    daovoice('init', {
+      app_id: "07960529"
+    });
+    daovoice('update');
+  </script>
+  <!-- DaoVoice留言板 END -->
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'hgEcXnOfmL8iDWRYOEjtEGoa-gzGzoHsz',
+        appKey: 'qjVrCpos1yUadkalgX3XhAxF',
+        placeholder: '无需注册，畅所欲言',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("hgEcXnOfmL8iDWRYOEjtEGoa-gzGzoHsz", "qjVrCpos1yUadkalgX3XhAxF");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
